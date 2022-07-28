@@ -1,14 +1,24 @@
 import './Header.scss';
 import Logo from '../../assets/Corazon.svg';
+import MenuIcon from '@mui/icons-material/Menu';
 
-const Header = () => {
+interface HeaderProps {
+  open: boolean;
+  handleOpen: () => void;
+}
+
+const Header = (props: HeaderProps) => {
+  const { open, handleOpen } = props;
   return (
-    <header className='header sticky flex align-items-center justify-content-between flex-wrap py-3'>
-      <div className='flex flex-row'>
-        <img src={Logo} className='logo my-auto ml-10' alt='CardioV' />
+    <div className={`flex flex-row my-auto bg-sky-600 w-screen p-2 ${open ? 'z-10' : 'z-30'}`}>
+      <div onClick={handleOpen} className='mr-3 my-auto hover:bg-sky-700'>
+        <MenuIcon />
+      </div>
+      <div className='flex flex-row ml-28'>
+        <img src={Logo} className='logo my-auto' alt='CardioV' />
         <span className='my-auto ml-3 text-xl font-bold text-white  '> CardioV </span>
       </div>
-    </header>
+    </div>
   );
 };
 export default Header;
