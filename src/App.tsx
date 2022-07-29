@@ -2,10 +2,8 @@ import Spinner from './components/Spinner/Spinner';
 import Header from './components/Header/Header';
 import { Routes, Route, Link } from 'react-router-dom';
 import { useState } from 'react';
-import IconButton from '@mui/material/IconButton';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
 import Sidebar from './components/Sidebar/sidebar';
+import { CustomRoutes } from './common/constants';
 
 function App() {
   const [open, setOpen] = useState(false);
@@ -23,9 +21,9 @@ function App() {
       <div className='flex mx-auto'>
         <Routes>
           <Route path='/' element={<Spinner show />} />
-          <Route path='/Inbox' element={<Spinner show />} />
-          <Route path='/Starred' element={<Spinner show />} />
-          <Route path='/Drafts' element={<Spinner show />} />
+          {CustomRoutes.map(route => (
+            <Route path={route.name} element={<route.component />} key={route.name} />
+          ))}
         </Routes>
       </div>
     </div>

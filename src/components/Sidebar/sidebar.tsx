@@ -3,6 +3,7 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 
 import { Link } from 'react-router-dom';
+import { CustomRoutes } from 'src/common/constants';
 
 interface SidebarProps {
   open: boolean;
@@ -20,10 +21,10 @@ const Sidebar = (props: SidebarProps) => {
       <div className='flex items-center justify-end p-3'>
         <IconButton onClick={() => setOpen(false)}>{<ChevronLeftIcon />}</IconButton>
       </div>
-      {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-        <Link to={text} key={text} className='flex flex-row my-2 p-1'>
+      {CustomRoutes.map(route => (
+        <Link to={route.name} key={route.name} className='flex flex-row my-2 p-1'>
           <InboxIcon className='my-auto' />
-          {open && <span className='my-auto ml-2'> {text}</span>}
+          {open && <span className='my-auto ml-2'> {route.name}</span>}
         </Link>
       ))}
     </div>
