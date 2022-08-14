@@ -9,20 +9,21 @@ import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import Logout from '@mui/icons-material/Logout';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 
 import './Header.scss';
 import { Link } from 'react-router-dom';
 
 interface HeaderProps {
   open: boolean;
-  handleOpen: () => void;
+  setOpen: (state: boolean) => void;
 }
 
 const Header = (props: HeaderProps) => {
-  const { open, handleOpen } = props;
+  const { open, setOpen } = props;
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const openW = Boolean(anchorEl);
+  const openAvatar = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -31,15 +32,17 @@ const Header = (props: HeaderProps) => {
   };
 
   return (
-    <div className={`flex flex-row my-auto bg-sky-600 w-screen p-2 justify-between ${open ? 'z-10' : 'z-30'}`}>
+    <div className={`header flex flex-row my-auto bg-sky-600 w-screen p-2 justify-between`}>
       <div className='flex'>
-        <div onClick={handleOpen} className='mr-3 my-auto hover:bg-sky-700'>
-          <MenuIcon />
+        <div onClick={() => setOpen(!open)} className='mr-3 my-auto hover:bg-sky-700'>
+          {!open ? <MenuIcon /> : <ChevronLeftIcon />}
         </div>
-        <div className='flex flex-row ml-28'>
-          <img src={Logo} className='logo my-auto' alt='CardioV' />
-          <span className='my-auto ml-3 text-xl font-bold text-white  '> CardioV </span>
-        </div>
+        <Link to='/' key='home'>
+          <div className='flex flex-row ml-28'>
+            <img src={Logo} className='logo my-auto' alt='CardioV' />
+            <span className='my-auto ml-3 text-xl font-bold text-white'> CardioV </span>
+          </div>
+        </Link>
       </div>
       <div className='flex items-center text-center mr-8'>
         <Tooltip title='Account settings'>
@@ -47,9 +50,9 @@ const Header = (props: HeaderProps) => {
             onClick={handleClick}
             size='small'
             sx={{ ml: 2 }}
-            aria-controls={openW ? 'account-menu' : undefined}
+            aria-controls={openAvatar ? 'account-menu' : undefined}
             aria-haspopup='true'
-            aria-expanded={openW ? 'true' : undefined}>
+            aria-expanded={openAvatar ? 'true' : undefined}>
             <Avatar sx={{ width: 42, height: 42 }}>{/* Avatar content */}</Avatar>
           </IconButton>
         </Tooltip>
@@ -57,7 +60,7 @@ const Header = (props: HeaderProps) => {
       <Menu
         anchorEl={anchorEl}
         id='account-menu'
-        open={openW}
+        open={openAvatar}
         onClose={handleClose}
         onClick={handleClose}
         PaperProps={{

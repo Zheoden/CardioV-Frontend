@@ -10,13 +10,8 @@ function App() {
 
   return (
     <div className='flex flex-col'>
-      <Header
-        open={open}
-        handleOpen={() => {
-          setOpen(true);
-        }}
-      />
-      <Sidebar open={open} setOpen={setOpen}></Sidebar>
+      <Header open={open} setOpen={setOpen} />
+      <Sidebar open={open}></Sidebar>
 
       <div className='flex mx-auto'>
         <Routes>
