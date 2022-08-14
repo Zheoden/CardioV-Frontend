@@ -10,7 +10,7 @@ interface SidebarProps {
   setOpen: (state: boolean) => void;
 }
 
-const Sidebar = (props: SidebarProps) => {
+const Sidebar = (props: SidebarProps): JSX.Element => {
   const { open, setOpen } = props;
 
   return (
@@ -23,8 +23,10 @@ const Sidebar = (props: SidebarProps) => {
       </div>
       {CustomRoutes.map(route => (
         <Link to={route.name} key={route.name} className='flex flex-row my-2 p-1'>
-          <InboxIcon className='my-auto' />
-          {open && <span className='my-auto ml-2'> {route.name}</span>}
+          <>
+            {route.icon}
+            {open && <span className='my-auto ml-2'> {route.name}</span>}
+          </>
         </Link>
       ))}
     </div>
