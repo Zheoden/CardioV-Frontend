@@ -9,7 +9,7 @@ function App() {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className='flex flex-col'>
+    <div className='flex flex-col w-full overflow-x-hidden'>
       <Header open={open} setOpen={setOpen} />
       <Sidebar open={open}></Sidebar>
 

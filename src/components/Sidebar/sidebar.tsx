@@ -55,7 +55,7 @@ export const Sidebar = (props: SidebarProps): JSX.Element => {
       <Drawer variant='permanent' open={open}>
         <List>
           <div className='mt-16'>
-            {CustomRoutes.map(route => (
+            {CustomRoutes.filter(route => route.sidebarVisible).map(route => (
               <Link to={route.name} key={route.name} className='flex flex-row my-2 p-1'>
                 <>
                   {route.icon}
