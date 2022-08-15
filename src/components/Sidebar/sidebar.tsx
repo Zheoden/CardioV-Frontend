@@ -1,32 +1,74 @@
-import IconButton from '@mui/material/IconButton';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-
+import { styled, useTheme, Theme, CSSObject } from '@mui/material/styles';
+import MuiDrawer from '@mui/material/Drawer';
+import List from '@mui/material/List';
+import Divider from '@mui/material/Divider';
+import { CustomRoutes } from 'src/common/constants';
 import { Link } from 'react-router-dom';
 
 interface SidebarProps {
   open: boolean;
-  setOpen: (state: boolean) => void;
 }
 
-const Sidebar = (props: SidebarProps) => {
-  const { open, setOpen } = props;
+const drawerWidth = 160;
+
+const openedMixin = (theme: Theme): CSSObject => ({
+  width: drawerWidth,
+  transition: theme.transitions.create('width', {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.enteringScreen,
+  }),
+  overflowX: 'hidden',
+});
+
+const closedMixin = (theme: Theme): CSSObject => ({
+  transition: theme.transitions.create('width', {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  overflowX: 'hidden',
+  width: `calc(${theme.spacing(7)} + 1px)`,
+  [theme.breakpoints.up('sm')]: {
+    width: `calc(${theme.spacing(8)} + 1px)`,
+  },
+});
+
+const Drawer = styled(MuiDrawer, { shouldForwardProp: prop => prop !== 'open' })(({ theme, open }) => ({
+  width: drawerWidth,
+  flexShrink: 0,
+  whiteSpace: 'nowrap',
+  boxSizing: 'border-box',
+  ...(open && {
+    ...openedMixin(theme),
+    '& .MuiDrawer-paper': openedMixin(theme),
+  }),
+  ...(!open && {
+    ...closedMixin(theme),
+    '& .MuiDrawer-paper': closedMixin(theme),
+  }),
+}));
+
+export const Sidebar = (props: SidebarProps): JSX.Element => {
+  const { open } = props;
 
   return (
-    <div
-      className={`bg-white shrink-0 whitespace-nowrap box-border overflow-x-hidden top-0 left-0 fixed border-r-2 h-screen ${
-        open ? 'navbar-custom-opened z-20' : 'navbar-custom-closed'
-      }`}>
-      <div className='flex items-center justify-end p-3'>
-        <IconButton onClick={() => setOpen(false)}>{<ChevronLeftIcon />}</IconButton>
-      </div>
-      {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-        <Link to={text} key={text} className='flex flex-row my-2 p-1'>
-          <InboxIcon className='my-auto' />
-          {open && <span className='my-auto ml-2'> {text}</span>}
-        </Link>
-      ))}
+    <div className='flex'>
+      <Drawer variant='permanent' open={open}>
+        <List>
+          <div className='mt-16'>
+            {CustomRoutes.filter(route => route.sidebarVisible).map(route => (
+              <Link to={route.name} key={route.name} className='flex flex-row my-2 p-1'>
+                <>
+                  {route.icon}
+                  {open && <span className='my-auto ml-2'> {route.name}</span>}
+                </>
+              </Link>
+            ))}
+          </div>
+        </List>
+        <Divider />
+      </Drawer>
     </div>
   );
 };
+
 export default Sidebar;
