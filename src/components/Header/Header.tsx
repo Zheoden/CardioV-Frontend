@@ -19,9 +19,7 @@ interface HeaderProps {
   setOpen: (state: boolean) => void;
 }
 
-const Header = (props: HeaderProps) => {
-  const { open, setOpen } = props;
-
+const Header = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const openAvatar = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -34,9 +32,6 @@ const Header = (props: HeaderProps) => {
   return (
     <div className={`header flex flex-row my-auto bg-sky-600 w-screen p-2 justify-between`}>
       <div className='flex'>
-        <div onClick={() => setOpen(!open)} className='mr-3 my-auto hover:bg-sky-700'>
-          {!open ? <MenuIcon /> : <ChevronLeftIcon />}
-        </div>
         <Link to='/' key='home'>
           <div className='flex flex-row ml-28'>
             <img src={Logo} className='logo my-auto' alt='CardioV' />

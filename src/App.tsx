@@ -2,16 +2,18 @@ import Spinner from './components/Spinner/Spinner';
 import Header from './components/Header/Header';
 import { Routes, Route, Link } from 'react-router-dom';
 import { useState } from 'react';
-import Sidebar from './components/Sidebar/sidebar';
 import { CustomRoutes } from './common/constants';
+import Login from './views/Login/login';
 
 function App() {
   const [open, setOpen] = useState(false);
 
   return (
     <div className='flex flex-col w-full overflow-x-hidden'>
-      <Header open={open} setOpen={setOpen} />
-      <Sidebar open={open}></Sidebar>
+      <Routes>
+        <Route path='/login' element={<Login />} />
+      </Routes>
+      <Header />
 
       <div className='flex mx-auto'>
         <Routes>
