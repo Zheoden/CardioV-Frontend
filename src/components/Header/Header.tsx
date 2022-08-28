@@ -9,7 +9,7 @@ import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import Logout from '@mui/icons-material/Logout';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import LoginButton from '../Session/LogoutButton';
 
 import './Header.scss';
 import { Link } from 'react-router-dom';
@@ -87,7 +87,7 @@ const Header = () => {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}>
         <MenuItem>
-          <Link to='Profile' key='Profile' className='flex flex-row my-2 p-1'>
+          <Link to='/profile' key='profile' className='flex flex-row my-2 p-1'>
             <Avatar /> Profile
           </Link>
         </MenuItem>
@@ -96,7 +96,7 @@ const Header = () => {
           <ListItemIcon>
             <Logout fontSize='small' />
           </ListItemIcon>
-          Logout
+          <LoginButton />
         </MenuItem>
       </Menu>
     </div>

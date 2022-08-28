@@ -1,4 +1,4 @@
-import './spinner.scss';
+import './Spinner.scss';
 
 interface SpinnerProps {
   show: Boolean;

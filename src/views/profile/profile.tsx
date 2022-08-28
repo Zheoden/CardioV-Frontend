@@ -1,8 +1,9 @@
 import { TextField } from '@mui/material';
+import Layout from '../Layout/Layout';
 
 const Profile = () => {
   return (
-    <div className='fixed top-0 flex-col'>
+    <Layout>
       <div className='flex flex-row mt-4'>
         <TextField label='Nombre' variant='standard' />
         <div className='ml-8'>
@@ -15,7 +16,7 @@ const Profile = () => {
           <TextField label='Avatar' variant='standard' />
         </div>
       </div>
-    </div>
+    </Layout>
   );
 };
 

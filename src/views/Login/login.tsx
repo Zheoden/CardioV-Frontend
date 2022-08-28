@@ -1,5 +1,11 @@
-const Login = () => {
-  return <div className='flex flex-col lg:ml-20 ml-16'>Vista de Login</div>;
+import LoginButton from 'src/components/Session/LoginButton';
+
+const Login = (props: any) => {
+  return (
+    <div>
+      <LoginButton />
+    </div>
+  );
 };
 
 export default Login;
