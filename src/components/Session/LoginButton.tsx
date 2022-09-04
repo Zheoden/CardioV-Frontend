@@ -5,9 +5,14 @@ import { useContextState } from 'src/common/ContextState/ContextState';
 import { ActionTypes } from 'src/common/ContextState/Interfaces';
 import { refreshToken } from 'src/common/GoogleUtils';
 import { useNavigate } from 'react-router-dom';
-import Logout from './LogoutButton';
 
-const LoginButton = (props: any) => {
+interface LoginButtonProps {
+  className?: string;
+  text: string;
+}
+
+const LoginButton = (props: LoginButtonProps) => {
+  const { className, text } = props;
   const navigate = useNavigate();
   const { contextState, setContextState } = useContextState();
 
@@ -45,7 +50,11 @@ const LoginButton = (props: any) => {
       <GoogleLogin
         clientId='245374883444-nh7avbvlhcso77iad3d27mt5fh5on4u1.apps.googleusercontent.com'
         buttonText='Log in with Google'
-        /* render={renderProps => <span>HOLAAAA</span>} */
+        render={renderProps => (
+          <button onClick={renderProps.onClick} disabled={renderProps.disabled} className={className}>
+            {text}
+          </button>
+        )}
         onSuccess={onSuccess}
         onFailure={onFailure}
         cookiePolicy={'single_host_origin'}

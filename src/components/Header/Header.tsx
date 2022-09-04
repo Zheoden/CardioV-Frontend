@@ -9,7 +9,7 @@ import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import Logout from '@mui/icons-material/Logout';
-import LoginButton from '../Session/LogoutButton';
+import LogoutButton from '../Session/LogoutButton';
 
 import './Header.scss';
 import { Link } from 'react-router-dom';
@@ -33,7 +33,7 @@ const Header = () => {
     <div className={`header flex flex-row my-auto bg-sky-600 w-screen p-2 justify-between`}>
       <div className='flex'>
         <Link to='/' key='home'>
-          <div className='flex flex-row ml-28'>
+          <div className='flex flex-row'>
             <img src={Logo} className='logo my-auto' alt='CardioV' />
             <span className='my-auto ml-3 text-xl font-bold text-white'> CardioV </span>
           </div>
@@ -96,7 +96,7 @@ const Header = () => {
           <ListItemIcon>
             <Logout fontSize='small' />
           </ListItemIcon>
-          <LoginButton />
+          <LogoutButton text='Cerrar Sesion' />
         </MenuItem>
       </Menu>
     </div>
