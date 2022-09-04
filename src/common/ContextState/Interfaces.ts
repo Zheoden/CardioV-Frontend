@@ -1,5 +1,6 @@
 export interface State {
   loading: Boolean;
+  redirectUrl: string;
   user: UserState;
 }
 
@@ -9,6 +10,7 @@ export interface UserState extends GoogleUser {
 
 export enum ActionTypes {
   SetLoading = 'SET_LOADING',
+  SetRedirectURL = 'SET_REDIRECTURL',
   SetToken = 'SET_TOKEN',
   SetUser = 'SET_USER',
 }

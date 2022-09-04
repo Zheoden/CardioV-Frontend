@@ -3,6 +3,7 @@ import { Actions, ActionTypes, State } from './Interfaces';
 
 export const initialState: State = {
   loading: true,
+  redirectUrl: '',
   user: {
     token: '',
     email: '',
@@ -19,6 +20,11 @@ export const reducer = (state: State = initialState, action: Actions) => {
       return {
         ...state,
         loading: action.value,
+      };
+    case ActionTypes.SetRedirectURL:
+      return {
+        ...state,
+        redirectUrl: action.value,
       };
     case ActionTypes.SetToken:
       return {

@@ -38,7 +38,7 @@ const LoginButton = (props: LoginButtonProps) => {
     });
 
     refreshToken(res);
-    navigate('/');
+    navigate(contextState.redirectUrl);
   };
 
   const onFailure = (res: unknown) => {
