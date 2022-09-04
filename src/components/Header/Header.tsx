@@ -87,8 +87,9 @@ const Header = () => {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}>
         <MenuItem>
-          <Link to='/profile' key='profile' className='flex flex-row my-2 p-1'>
-            <Avatar /> Profile
+          <Link to='/profile' key='profile' className='flex flex-row'>
+            <Avatar />
+            <span className='my-auto'>Profile</span>
           </Link>
         </MenuItem>
         <Divider />
