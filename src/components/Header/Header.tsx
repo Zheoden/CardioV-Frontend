@@ -6,8 +6,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Avatar from '@mui/material/Avatar';
 import MenuItem from '@mui/material/MenuItem';
 import { Link } from 'react-router-dom';
-//import Logo from '../../assets/Logo-Oscuro.png';
-import Logo from '../../assets/Corazon.svg';
+import Logo from '../../assets/Logo-Oscuro.png';
+//import Logo from '../../assets/Corazon.svg';
 
 import './Header.scss';
 import { Logout } from '@mui/icons-material';
@@ -18,7 +18,6 @@ const pages = [
   { displayName: 'Home', path: '/' },
   { displayName: 'Profile', path: '/profile' },
 
-  
   { displayName: 'Videos', path: '/videos' },
 ];
 
