@@ -1,13 +1,6 @@
-import axios from 'axios';
-
-const alkymetricsBaseURL = process?.env?.REACT_APP_ALKYMETRICS_URL ?? '';
-const client = axios.create({ baseURL: alkymetricsBaseURL });
-
-interface Profile {
-  firstName: string;
-  lastName: string;
-  document: string;
-}
+import { videoResponse } from './Constants';
+import { Profile, VideosDto } from './Interfaces';
+import client from './VideoClient';
 
 export async function getProfile(token: string): Promise<Profile> {
   return client
@@ -18,4 +11,8 @@ export async function getProfile(token: string): Promise<Profile> {
     .catch(err => {
       return err;
     });
+}
+
+export async function getVideos(): Promise<VideosDto[]> {
+  return Promise.resolve(videoResponse);
 }
