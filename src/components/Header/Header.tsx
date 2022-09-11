@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useState } from 'react';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -8,7 +8,6 @@ import { Link } from 'react-router-dom';
 import Logo from '../../assets/Logo-Oscuro.png';
 
 import { Logout } from '@mui/icons-material';
-import { Divider } from '@mui/material';
 import LogoutButton from '../Session/LogoutButton';
 
 import { CustomRoutes } from '../../common/Constants';
@@ -16,8 +15,8 @@ import { CustomRoutes } from '../../common/Constants';
 import './Header.scss';
 
 const Header = () => {
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
-  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
+  const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
+  const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -118,7 +117,7 @@ const Header = () => {
               <span className='my-auto'>Profile</span>
             </Link>
           </MenuItem>
-          <Divider />
+          <hr />
           <MenuItem>
             <Logout fontSize='small' />
             <LogoutButton text='Cerrar Sesion' />
