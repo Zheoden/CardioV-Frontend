@@ -19,10 +19,11 @@ jobs:
         with:
           node-version: '14.17.0'
 
-      - name: Build & Install
-        run: |
-          npm install
-          REACT_APP_GOOGLE_CLIENT_ID=${{ REACT_APP_GOOGLE_CLIENT_ID }} npm run build
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build
+        run: REACT_APP_GOOGLE_CLIENT_ID=${{ REACT_APP_GOOGLE_CLIENT_ID }} npm run build
 
       - name: 'Deploy to S3'
         uses: lbertenasco/s3-deploy@v1
