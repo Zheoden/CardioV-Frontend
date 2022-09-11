@@ -1,4 +1,4 @@
-import { VideosDto } from './Interfaces-1';
+import { VideosDto } from './Interfaces';
 
 export const backendURL = '';
 

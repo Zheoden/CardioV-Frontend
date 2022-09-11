@@ -10,7 +10,7 @@ import Logo from '../../assets/Logo-Oscuro.png';
 import { Logout } from '@mui/icons-material';
 import LogoutButton from '../Session/LogoutButton';
 
-import { CustomRoutes } from '../../common/Constants-1';
+import { CustomRoutes } from '../../common/Constants';
 
 import './Header.scss';
 

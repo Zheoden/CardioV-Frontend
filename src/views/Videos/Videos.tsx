@@ -4,8 +4,8 @@ import CardMedia from '@mui/material/CardMedia';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { getVideos } from 'src/api/VideoService-1';
-import { VideosDto } from 'src/api/Interfaces-1';
+import { getVideos } from 'src/api/VideoService';
+import { VideosDto } from 'src/api/Interfaces';
 import { Button } from '@mui/material';
 import Layout from '../Layout/Layout';
 

@@ -1,6 +1,6 @@
-import Profile from 'src/views/Profile/Profile-1';
-import Videos from 'src/views/Videos/Videos-1';
-import VideosDetails from 'src/views/VideosDetails/VideosDetails-1';
+import Profile from 'src/views/Profile/Profile';
+import Videos from 'src/views/Videos/Videos';
+import VideosDetails from 'src/views/VideosDetails/VideosDetails';
 import Home from 'src/views/Home/Home';
 
 export interface CustomRoute {

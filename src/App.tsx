@@ -1,6 +1,6 @@
 import { Routes, Route, Link } from 'react-router-dom';
-import { CustomRoutes } from './common/Constants-1';
-import Login from './views/Login/Login-1';
+import { CustomRoutes } from './common/Constants';
+import Login from './views/Login/Login';
 import { ContextProvider } from './common/ContextState/ContextState';
 import Protected from './components/ProtectedRoute/ProtectedRoute';
 
