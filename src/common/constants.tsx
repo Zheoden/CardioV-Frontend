@@ -1,33 +1,38 @@
 import Profile from 'src/views/Profile/Profile';
 import Videos from 'src/views/Videos/Videos';
-import PersonIcon from '@mui/icons-material/Person';
-import VideocamIcon from '@mui/icons-material/Videocam';
 import VideosDetails from 'src/views/VideosDetails/VideosDetails';
+import Home from 'src/views/Home/Home';
 
 export interface CustomRoute {
-  name: string;
-
+  path: string;
   component: () => JSX.Element;
-  icon?: JSX.Element;
-  sidebarVisible: boolean;
+  shouldDisplay: boolean;
+  name?: string;
+  displayName?: string;
 }
 
 export const CustomRoutes: CustomRoute[] = [
   {
-    name: 'profile',
-    icon: <PersonIcon className='my-auto' />,
+    path: '/',
+    component: Home,
+    shouldDisplay: true,
+    displayName: 'Home',
+  },
+  {
+    path: '/profile',
     component: Profile,
-    sidebarVisible: true,
+    shouldDisplay: true,
+    displayName: 'Profile',
   },
   {
-    name: 'videos',
-    icon: <VideocamIcon className='my-auto' />,
+    path: '/videos',
     component: Videos,
-    sidebarVisible: true,
+    shouldDisplay: true,
+    displayName: 'Videos',
   },
   {
-    name: 'videos/:id',
+    path: '/videos/:id',
     component: VideosDetails,
-    sidebarVisible: false,
+    shouldDisplay: false,
   },
 ];

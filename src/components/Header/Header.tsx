@@ -1,25 +1,19 @@
 import * as React from 'react';
 import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Avatar from '@mui/material/Avatar';
 import MenuItem from '@mui/material/MenuItem';
 import { Link } from 'react-router-dom';
 import Logo from '../../assets/Logo-Oscuro.png';
-//import Logo from '../../assets/Corazon.svg';
 
-import './Header.scss';
 import { Logout } from '@mui/icons-material';
 import { Divider } from '@mui/material';
 import LogoutButton from '../Session/LogoutButton';
 
-const pages = [
-  { displayName: 'Home', path: '/' },
-  { displayName: 'Profile', path: '/profile' },
+import { CustomRoutes } from '../../common/Constants';
 
-  { displayName: 'Videos', path: '/videos' },
-];
+import './Header.scss';
 
 const Header = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
@@ -75,7 +69,7 @@ const Header = () => {
           sx={{
             display: { xs: 'block', md: 'none' },
           }}>
-          {pages.map(page => (
+          {CustomRoutes.filter(route => route.shouldDisplay).map(page => (
             <Link to={page.path} key={page.displayName}>
               <div className='flex flex-row'>
                 <span className='my-auto text-xl text-center px-2'> {page.displayName} </span>
@@ -90,7 +84,7 @@ const Header = () => {
         </Link>
       </div>
       <div className='md:flex hidden flex-row my-auto'>
-        {pages.map(page => (
+        {CustomRoutes.filter(route => route.shouldDisplay).map(page => (
           <Link to={page.path} key={page.displayName}>
             <div className='flex flex-row'>
               <span className='my-auto ml-3 text-xl font-bold text-white'> {page.displayName} </span>
@@ -99,7 +93,7 @@ const Header = () => {
         ))}
       </div>
 
-      <div className='flex grow-0'>
+      <div className='flex grow-0 mr-8'>
         <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
           <Avatar sx={{ width: 42, height: 42 }}>{/* Avatar content */}</Avatar>
         </IconButton>
