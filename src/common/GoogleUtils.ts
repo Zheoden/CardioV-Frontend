@@ -11,3 +11,5 @@ export const refreshToken = (res: any) => {
   };
   setTimeout(refreshToken, refreshTiming);
 };
+
+export const googleClientId = process.env.REACT_APP_GOOGLE_CLIENT_ID ?? '';

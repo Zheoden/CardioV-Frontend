@@ -1,10 +1,9 @@
-import { Button } from '@mui/material';
 import { gapi } from 'gapi-script';
 import { useEffect } from 'react';
-import { GoogleLogin, GoogleLogout } from 'react-google-login';
+import { GoogleLogout } from 'react-google-login';
 import { useContextState } from 'src/common/ContextState/ContextState';
 import { ActionTypes } from 'src/common/ContextState/Interfaces';
-import { refreshToken } from 'src/common/GoogleUtils';
+import { googleClientId } from 'src/common/GoogleUtils';
 
 interface LogoutButtonProps {
   className?: string;
@@ -18,7 +17,7 @@ const LogoutButton = (props: LogoutButtonProps) => {
   useEffect(() => {
     const initClient = () => {
       gapi.client.init({
-        clientId: '245374883444-nh7avbvlhcso77iad3d27mt5fh5on4u1.apps.googleusercontent.com',
+        clientId: googleClientId,
         scope: '',
       });
     };
@@ -36,7 +35,7 @@ const LogoutButton = (props: LogoutButtonProps) => {
   return (
     <div>
       <GoogleLogout
-        clientId='245374883444-nh7avbvlhcso77iad3d27mt5fh5on4u1.apps.googleusercontent.com'
+        clientId={googleClientId}
         buttonText='Log out'
         onLogoutSuccess={onSuccess}
         render={renderProps => (

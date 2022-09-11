@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { GoogleLogin } from 'react-google-login';
 import { useContextState } from 'src/common/ContextState/ContextState';
 import { ActionTypes } from 'src/common/ContextState/Interfaces';
-import { refreshToken } from 'src/common/GoogleUtils';
+import { googleClientId, refreshToken } from 'src/common/GoogleUtils';
 import { useNavigate } from 'react-router-dom';
 
 interface LoginButtonProps {
@@ -19,7 +19,7 @@ const LoginButton = (props: LoginButtonProps) => {
   useEffect(() => {
     const initClient = () => {
       gapi.client.init({
-        clientId: '245374883444-nh7avbvlhcso77iad3d27mt5fh5on4u1.apps.googleusercontent.com',
+        clientId: googleClientId,
         scope: '',
       });
     };
@@ -48,7 +48,7 @@ const LoginButton = (props: LoginButtonProps) => {
   return (
     <div>
       <GoogleLogin
-        clientId='245374883444-nh7avbvlhcso77iad3d27mt5fh5on4u1.apps.googleusercontent.com'
+        clientId={googleClientId}
         buttonText='Log in with Google'
         render={renderProps => (
           <button onClick={renderProps.onClick} disabled={renderProps.disabled} className={className}>
