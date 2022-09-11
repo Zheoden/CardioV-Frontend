@@ -1,4 +1,4 @@
-import { CustomRoutes } from 'src/common/Constants';
+import { CustomRoutes } from 'src/common/Constants-1';
 import HomeCard from 'src/components/HomeCards/HomeCard';
 import Layout from '../Layout/Layout';
 

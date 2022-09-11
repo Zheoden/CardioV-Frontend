@@ -1,6 +1,6 @@
-import { videoResponse } from './constants';
-import { Profile, VideosDto } from './interfaces';
-import client from './videoClient';
+import { videoResponse } from './Constants-1';
+import { Profile, VideosDto } from './Interfaces-1';
+import client from './VideoClient-1';
 
 export async function getProfile(token: string): Promise<Profile> {
   return client
