@@ -10,7 +10,7 @@ const VideosDetails = () => {
   return (
     <Layout>
       <div className='flex'>
-        <Card>
+        <Card className='mx-auto mt-8'>
           <CardMedia>
             <video src={videoURL} controls className='flex mx-auto' />
           </CardMedia>

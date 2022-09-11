@@ -24,7 +24,7 @@ const Videos = () => {
 
   return (
     <Layout>
-      <div className='flex flex-col lg:ml-20 ml-16'>
+      <div className='flex flex-col lg:ml-20 ml-8'>
         <div className='flex flex-row justify-between mt-4'>
           <span className='my-auto'>Buscador</span>
           <div className='mr-8'>

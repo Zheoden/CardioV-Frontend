@@ -6,12 +6,11 @@ const Home = () => {
   return (
     <Layout>
       <div className='flex flex-wrap w-screen'>
-        {CustomRoutes.filter(route => route.shouldDisplay).map(card => (
+        {CustomRoutes.filter(route => route.shouldDisplay).map((card, index) => (
           <HomeCard
-            className='m-auto mt-8'
+            className={`${index === 0 ? 'xl:mr-8' : ''} m-auto mt-28`}
             title={card.displayName ?? "Shouldn't be Displayed"}
             redirect={card.path}
-            description={card.description}
             thumbnail={`https://assets.cardiov.org/site/${card.key}-background.jpg`}
             key={card.path}
           />

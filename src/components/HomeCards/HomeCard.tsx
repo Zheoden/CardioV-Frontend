@@ -21,9 +21,9 @@ const HomeCard = (props: HomeCardProps) => {
         }}>
         <Link to={redirect}>
           <div className='p-4'>
-            <div className='flex flex-col font-bold'>
-              <h5 className='text-2xl mt-0 mb-2 text-blue-800'>{title}</h5>
-              <span className='m-auto text-blue-700'>{description}</span>
+            <div className='flex flex-col font-bold xl:px-28 lg:px-16 md:px-8'>
+              <h5 className='text-2xl mt-0 mb-2 text-black'>{title}</h5>
+              <span className='m-auto text-black'>{description}</span>
               <div
                 className='flex self-end'
                 onClick={e => {
