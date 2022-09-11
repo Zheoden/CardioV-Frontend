@@ -5,13 +5,14 @@ import Layout from '../Layout/Layout';
 const Home = () => {
   return (
     <Layout>
-      <div className='flex flex-wrap w-screen h-screen'>
+      <div className='flex flex-wrap w-screen'>
         {CustomRoutes.filter(route => route.shouldDisplay).map(card => (
           <HomeCard
-            className='m-auto'
+            className='m-auto mt-8'
             title={card.displayName ?? "Shouldn't be Displayed"}
             redirect={card.path}
-            thumbnail='https://www.youtube.com/watch?v=bL8lX4tP5jw&ab_channel=TiagoPZK'
+            description={card.description}
+            thumbnail={`https://assets.cardiov.org/site/${card.key}-background.jpg`}
             key={card.path}
           />
         ))}

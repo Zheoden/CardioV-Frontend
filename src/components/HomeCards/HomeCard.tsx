@@ -12,14 +12,18 @@ export interface HomeCardProps {
 const HomeCard = (props: HomeCardProps) => {
   const { title, redirect, thumbnail, description, className } = props;
   return (
-    <div className={className}>
-      <Card sx={{ maxWidth: 275 }}>
-        <CardMedia component='video' height='140' src={thumbnail} controls />
+    <div className={`px-8 ${className}`}>
+      <Card
+        sx={{ maxWidth: 560, minHeight: 180 }}
+        className='bg-cover bg-center'
+        style={{
+          backgroundImage: `url(${thumbnail})`,
+        }}>
         <Link to={redirect}>
-          <CardContent>
-            <div className='flex flex-col'>
-              <h5 className='text-2xl mt-0 mb-2'>{title}</h5>
-              <span>{description}</span>
+          <div className='p-4'>
+            <div className='flex flex-col font-bold'>
+              <h5 className='text-2xl mt-0 mb-2 text-blue-800'>{title}</h5>
+              <span className='m-auto text-blue-700'>{description}</span>
               <div
                 className='flex self-end'
                 onClick={e => {
@@ -28,7 +32,7 @@ const HomeCard = (props: HomeCardProps) => {
                   console.log(e);
                 }}></div>
             </div>
-          </CardContent>
+          </div>
         </Link>
       </Card>
     </div>

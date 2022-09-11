@@ -16,7 +16,7 @@ const VideosDetails = () => {
           </CardMedia>
           <CardContent>
             <h5 className='text-2xl mt-0 mb-2'>Detalles:</h5>
-            <div className='flex flex-col text-bold'>
+            <div className='flex flex-col font-bold'>
               <div className='flex flex-row'>
                 <TextField disabled label='Perimetro' defaultValue='asd' variant='standard' />
                 <div className='ml-8'>
