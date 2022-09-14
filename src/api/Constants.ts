@@ -1,4 +1,4 @@
-import { VideosDto } from './Interfaces';
+import { VideosDetailsDto, VideosDto } from './Interfaces';
 
 export const backendURL = '';
 
@@ -91,3 +91,28 @@ export const videoResponse: VideosDto[] = [
     thumbnail: videoURL,
   },
 ];
+
+export const videoDetailsResponse: VideosDetailsDto = {
+  id: '14',
+  title: 'Corazon 14',
+  description: videoDescription,
+  thumbnail: videoURL,
+  parameters: [
+    {
+      field: 'Perimetro',
+      value: '22cm',
+    },
+    {
+      field: 'Flujo Sanguineo',
+      value: '56 ml3',
+    },
+    {
+      field: 'Tamaño de cavidad',
+      value: '12cm',
+    },
+    {
+      field: 'Volumen',
+      value: '36cm3',
+    },
+  ],
+};
