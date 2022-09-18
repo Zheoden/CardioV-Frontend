@@ -2,6 +2,7 @@ export interface Profile {
   firstName: string;
   lastName: string;
   document: string;
+  thumbnail: string;
 }
 
 export interface VideosDto {
