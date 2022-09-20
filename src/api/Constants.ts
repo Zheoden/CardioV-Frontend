@@ -99,20 +99,20 @@ export const videoDetailsResponse: VideosDetailsDto = {
   thumbnail: videoURL,
   parameters: [
     {
-      field: 'Perimetro',
-      value: '22cm',
+      field: 'Grosor de las Paredes',
+      value: '12 mm',
     },
     {
-      field: 'Flujo Sanguineo',
-      value: '56 ml3',
+      field: 'Area Ventriculos',
+      value: '56 cm2',
     },
     {
-      field: 'Tamaño de cavidad',
-      value: '12cm',
+      field: 'Area auriculas',
+      value: '12 cm2',
     },
     {
       field: 'Volumen',
-      value: '36cm3',
+      value: '36 cm3',
     },
   ],
 };
