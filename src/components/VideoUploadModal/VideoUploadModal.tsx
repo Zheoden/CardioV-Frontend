@@ -27,7 +27,7 @@ const VideoUploadModal = (props: VideoUploadModalProps) => {
     if (fileExtension === 'jpg' || fileExtension === 'jpeg' || fileExtension === 'png' || fileExtension === 'mp4') {
       setCurrentFile(file ?? undefined);
     } else {
-      window.alert('Solo se soportan archivos de tipo jpg, jpeg, png o mp4');
+      console.log('Solo se soportan archivos de tipo jpg, jpeg, png o mp4');
     }
   };
 
@@ -44,7 +44,7 @@ const VideoUploadModal = (props: VideoUploadModalProps) => {
           setLoading(false);
         });
     } else {
-      window.alert('Debe seleccionar una imagen o un video para poder subirlo');
+      console.log('Debe seleccionar una imagen o un video para poder subirlo');
     }
   };
 
