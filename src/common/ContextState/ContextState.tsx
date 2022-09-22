@@ -4,13 +4,12 @@ import { Actions, ActionTypes, State } from './Interfaces';
 export const initialState: State = {
   loading: true,
   redirectUrl: '',
+  userToken: '',
   user: {
-    token: '',
-    email: '',
-    familyName: '',
-    givenName: '',
-    googleId: '',
-    imageUrl: '',
+    firstName: '',
+    lastName: '',
+    birthdate: '',
+    avatar: '',
   },
 };
 
@@ -29,10 +28,7 @@ export const reducer = (state: State = initialState, action: Actions) => {
     case ActionTypes.SetToken:
       return {
         ...state,
-        user: {
-          ...state.user,
-          token: action.value,
-        },
+        userToken: action.value,
       };
     case ActionTypes.SetUser:
       return {

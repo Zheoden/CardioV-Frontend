@@ -1,10 +1,9 @@
-import { videoDetailsResponse, videoResponse } from './Constants';
 import { Profile, VideosDetailsDto, VideosDto } from './Interfaces';
 import client from './VideoClient';
 
-export async function getProfile(token: string): Promise<Profile> {
+export async function getProfile(): Promise<Profile> {
   return client
-    .get('/users/me', { headers: { Authorization: `Bearer ${token}` } })
+    .get('/user/me')
     .then(response => {
       return response.data;
     })
@@ -14,37 +13,41 @@ export async function getProfile(token: string): Promise<Profile> {
 }
 
 export async function getVideos(filter: string = ''): Promise<VideosDto[]> {
-  /* return client
-    .get(`/videos?query=${filter}`)
+  return client
+    .get(`/media/me?query=${filter}`)
     .then(response => {
       return response.data;
     })
     .catch(err => {
       throw err;
-    }); */
-  return Promise.resolve(videoResponse);
+    });
 }
 
 export async function getVideosById(id: string): Promise<VideosDetailsDto> {
-  /* return client
-    .get(`/videos/${id}`)
+  return client
+    .get(`/media/${id}`)
     .then(response => {
       return response.data;
     })
     .catch(err => {
       throw err;
-    }); */
-  return Promise.resolve(videoDetailsResponse);
+    });
 }
 
 export async function uploadVideo(file: File): Promise<void> {
-  /* return client
-    .post(`/videos/${id}`, {file: file})
+  const formData = new FormData();
+  formData.append('file', file);
+  formData.append(
+    'description',
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
+  );
+  formData.append('title', 'Corazon');
+  return client
+    .post(`/media`, formData)
     .then(response => {
       return response.data;
     })
     .catch(err => {
       throw err;
-    }); */
-  return Promise.resolve();
+    });
 }

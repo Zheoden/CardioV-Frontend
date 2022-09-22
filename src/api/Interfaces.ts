@@ -1,8 +1,8 @@
 export interface Profile {
   firstName: string;
   lastName: string;
-  document: string;
-  thumbnail: string;
+  birthdate: string;
+  avatar: string;
 }
 
 export interface VideosDto {
@@ -18,7 +18,6 @@ export interface VideosDetailsDto {
   description: string;
   thumbnail: string;
   parameters: VideoParameters[];
-
 }
 
 export interface VideoParameters {

@@ -2,6 +2,7 @@ import { Card, CardMedia, CardContent } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { VideosDto } from 'src/api/Interfaces';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import { useEffect } from 'react';
 
 interface VideoCardProps {
   video: VideosDto;
@@ -9,11 +10,13 @@ interface VideoCardProps {
 
 const VideoCard = (props: VideoCardProps) => {
   const { video } = props;
+  const videoParts = video.thumbnail.split('.');
+  const videoType = videoParts[videoParts.length - 1];
   return (
     <div className='flex mt-8 mr-4'>
       <Card sx={{ maxWidth: 275 }}>
-        <CardMedia component='video' height='140' src={video.thumbnail} controls />
-        <Link to={video.id}>
+        <CardMedia component={videoType === 'mp4' ? 'video' : 'img'} height='140' src={video.thumbnail} controls />
+        <Link to={`${video.id}`}>
           <CardContent>
             <div className='flex flex-col'>
               <h5 className='text-2xl mt-0 mb-2'>{video.title}</h5>

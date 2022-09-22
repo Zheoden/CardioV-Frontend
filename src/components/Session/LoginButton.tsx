@@ -5,6 +5,7 @@ import { useContextState } from 'src/common/ContextState/ContextState';
 import { ActionTypes } from 'src/common/ContextState/Interfaces';
 import { googleClientId, refreshToken } from 'src/common/GoogleUtils';
 import { useNavigate } from 'react-router-dom';
+import { getProfile } from 'src/api/VideoService';
 
 interface LoginButtonProps {
   className?: string;
@@ -28,14 +29,20 @@ const LoginButton = (props: LoginButtonProps) => {
 
   const onSuccess = (res: any) => {
     console.log('[Login Success] currentUser:', res);
+    localStorage.setItem('token', res.tokenId);
     setContextState({
       type: ActionTypes.SetToken,
-      value: res?.accessToken,
+      value: res?.tokenId,
     });
-    setContextState({
-      type: ActionTypes.SetUser,
-      value: res?.profileObj,
-    });
+
+    getProfile()
+      .then(user => {
+        setContextState({
+          type: ActionTypes.SetUser,
+          value: { firstName: user.firstName, lastName: user.lastName, birthdate: user.birthdate, avatar: user.avatar },
+        });
+      })
+      .catch();
 
     refreshToken(res);
     navigate(contextState.redirectUrl);

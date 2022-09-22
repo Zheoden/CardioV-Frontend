@@ -6,7 +6,7 @@ const Protected = (props: any) => {
   const { contextState, setContextState } = useContextState();
 
   const { children } = props;
-  if (!contextState.user.token) {
+  if (!contextState.userToken) {
     console.log();
     setContextState({
       type: ActionTypes.SetRedirectURL,

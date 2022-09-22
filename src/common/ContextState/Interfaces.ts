@@ -1,11 +1,15 @@
 export interface State {
   loading: Boolean;
   redirectUrl: string;
+  userToken: string;
   user: UserState;
 }
 
-export interface UserState extends GoogleUser {
-  token: string;
+export interface UserState {
+  firstName: string;
+  lastName: string;
+  birthdate: string;
+  avatar: string;
 }
 
 export enum ActionTypes {
@@ -18,12 +22,4 @@ export enum ActionTypes {
 export interface Actions {
   type: ActionTypes;
   value: any;
-}
-
-export interface GoogleUser {
-  email: string;
-  familyName: string;
-  givenName: string;
-  googleId: string;
-  imageUrl: string;
 }
