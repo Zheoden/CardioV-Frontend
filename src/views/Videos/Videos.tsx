@@ -24,7 +24,7 @@ const Videos = () => {
       .catch(err => {
         console.log(err);
       });
-  }, []);
+  }, [openModal]);
 
   useEffect(() => {
     const filterRegex = new RegExp(`.*${buscador.toLowerCase()}.*`);

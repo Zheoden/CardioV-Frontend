@@ -39,6 +39,7 @@ const VideoUploadModal = (props: VideoUploadModalProps) => {
         .then(res => {
           setCurrentFile(undefined);
           setLoading(false);
+          handleClose();
         })
         .catch(err => {
           setLoading(false);

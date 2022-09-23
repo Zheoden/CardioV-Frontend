@@ -22,7 +22,7 @@ const VideosDetails = () => {
       <div className='flex'>
         <Card className='mx-auto mt-8'>
           <CardMedia>
-            <video src={videoDetails?.thumbnail} controls className='flex mx-auto' />
+            <img src={videoDetails?.thumbnail} className='flex mx-auto' />
           </CardMedia>
           <CardContent>
             <h5 className='flex text-2xl mt-0 mb-2 mx-auto w-max'>Detalles</h5>
