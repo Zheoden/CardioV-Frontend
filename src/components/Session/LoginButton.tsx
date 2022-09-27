@@ -28,7 +28,6 @@ const LoginButton = (props: LoginButtonProps) => {
   });
 
   const onSuccess = (res: any) => {
-    console.log('[Login Success] currentUser:', res);
     localStorage.setItem('token', res.tokenId);
     setContextState({
       type: ActionTypes.SetToken,

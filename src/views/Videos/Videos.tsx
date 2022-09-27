@@ -29,7 +29,6 @@ const Videos = () => {
   useEffect(() => {
     const filterRegex = new RegExp(`.*${buscador.toLowerCase()}.*`);
     const filtered = videos.filter(video => video.title.toLowerCase().match(filterRegex) || video.description.toLowerCase().match(filterRegex));
-    console.log(filtered);
     setFilteredVideos(filtered);
   }, [buscador, videos]);
 

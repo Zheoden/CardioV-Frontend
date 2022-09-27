@@ -29,7 +29,6 @@ const HomeCard = (props: HomeCardProps) => {
                 onClick={e => {
                   e.stopPropagation();
                   e.nativeEvent.stopImmediatePropagation();
-                  console.log(e);
                 }}></div>
             </div>
           </div>

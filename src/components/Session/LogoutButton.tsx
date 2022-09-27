@@ -25,7 +25,6 @@ const LogoutButton = (props: LogoutButtonProps) => {
   });
 
   const onSuccess = () => {
-    console.log('Logout Success');
     setContextState({
       type: ActionTypes.SetToken,
       value: '',

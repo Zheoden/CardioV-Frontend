@@ -29,7 +29,6 @@ const VideoUploadModal = (props: VideoUploadModalProps) => {
     const file = event.target.files && event?.target?.files[0];
     const fileExtensions = file?.name.split('.') ?? [];
     const fileExtension = fileExtensions[fileExtensions.length - 1];
-    console.log(fileExtension);
     if (fileExtension === 'jpg' || fileExtension === 'jpeg' || fileExtension === 'png' || fileExtension === 'mp4') {
       setVideoUpload({ ...videoUpload, currentFile: file ?? undefined });
     } else {
@@ -40,7 +39,6 @@ const VideoUploadModal = (props: VideoUploadModalProps) => {
   const handleUploadVideo = async () => {
     setLoading(true);
     if (videoUpload.currentFile) {
-      console.log(videoUpload.currentFile);
       uploadVideo(videoUpload)
         .then(res => {
           setLoading(false);
