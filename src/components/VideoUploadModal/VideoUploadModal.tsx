@@ -4,18 +4,24 @@ import CloseIcon from '@mui/icons-material/Close';
 import UploadIcon from '@mui/icons-material/Upload';
 import { uploadVideo } from 'src/api/VideoService';
 import Spinner from '../Spinner/Spinner';
+import { VideoRequestBody } from 'src/api/Interfaces';
 
 interface VideoUploadModalProps {
   openModal: boolean;
   handleModalState: () => void;
 }
+
 const VideoUploadModal = (props: VideoUploadModalProps) => {
   const { openModal, handleModalState } = props;
-  const [currentFile, setCurrentFile] = useState<File | undefined>();
+  const [videoUpload, setVideoUpload] = useState<VideoRequestBody>({
+    currentFile: undefined,
+    title: '',
+    description: '',
+  });
   const [loading, setLoading] = useState<boolean>(false);
 
   const handleClose = () => {
-    setCurrentFile(undefined);
+    setVideoUpload({ ...videoUpload, currentFile: undefined });
     handleModalState();
   };
 
@@ -25,7 +31,7 @@ const VideoUploadModal = (props: VideoUploadModalProps) => {
     const fileExtension = fileExtensions[fileExtensions.length - 1];
     console.log(fileExtension);
     if (fileExtension === 'jpg' || fileExtension === 'jpeg' || fileExtension === 'png' || fileExtension === 'mp4') {
-      setCurrentFile(file ?? undefined);
+      setVideoUpload({ ...videoUpload, currentFile: file ?? undefined });
     } else {
       console.log('Solo se soportan archivos de tipo jpg, jpeg, png o mp4');
     }
@@ -33,11 +39,10 @@ const VideoUploadModal = (props: VideoUploadModalProps) => {
 
   const handleUploadVideo = async () => {
     setLoading(true);
-    if (currentFile) {
-      console.log(currentFile);
-      uploadVideo(currentFile)
+    if (videoUpload.currentFile) {
+      console.log(videoUpload.currentFile);
+      uploadVideo(videoUpload)
         .then(res => {
-          setCurrentFile(undefined);
           setLoading(false);
           handleClose();
         })
@@ -51,7 +56,7 @@ const VideoUploadModal = (props: VideoUploadModalProps) => {
 
   return (
     <Modal open={openModal} onClose={handleClose}>
-      <div className='absolute top-1/2 left-1/2 m-auto w-4/12 h-2/6 bg-white border-teal-800 border-2 upload-video'>
+      <div className='absolute top-1/2 left-1/2 m-auto w-5/12 h-min bg-white border-teal-800 border-2 upload-video'>
         <div className='flex flex-col p-4'>
           <div className='flex flex-row justify-between'>
             <span className='font-bold text-xl'>Subir un Archivo/video</span>
@@ -63,11 +68,26 @@ const VideoUploadModal = (props: VideoUploadModalProps) => {
             <Spinner show />
           ) : (
             <>
+              <div className='flex flex-col w-full mt-8'>
+                <input
+                  type='text'
+                  placeholder='Titulo'
+                  value={videoUpload.title}
+                  onChange={e => setVideoUpload({ ...videoUpload, title: e.target.value })}
+                  className='flex w-full p-2 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300'
+                />
+                <textarea
+                  placeholder='Descripcion'
+                  value={videoUpload.description}
+                  onChange={e => setVideoUpload({ ...videoUpload, description: e.target.value })}
+                  className='flex w-full p-2 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 mt-2'
+                />
+              </div>
               <div className='w-full mt-8'>
-                {currentFile ? (
+                {videoUpload.currentFile ? (
                   <div className='flex flex-row'>
-                    <span>{currentFile.name}</span>
-                    <div className='cursor-pointer' onClick={() => setCurrentFile(undefined)}>
+                    <span>{videoUpload.currentFile.name}</span>
+                    <div className='cursor-pointer' onClick={() => setVideoUpload({ ...videoUpload, currentFile: undefined })}>
                       <CloseIcon />
                     </div>
                   </div>
@@ -81,14 +101,20 @@ const VideoUploadModal = (props: VideoUploadModalProps) => {
                   </label>
                 )}
               </div>
-              <div className='flex flex-row mx-auto mt-8'>
+              <div className='flex flex-wrap mx-auto mt-8'>
                 <div className='mr-4'>
-                  <Button variant='outlined' onClick={handleUploadVideo} disabled={!currentFile}>
+                  <Button
+                    variant='outlined'
+                    onClick={handleUploadVideo}
+                    disabled={!videoUpload.currentFile || !videoUpload.title || !videoUpload.description}>
                     Subir
                   </Button>
                 </div>
-                <div className='ml-4'>
-                  <Button variant='outlined' onClick={handleClose} disabled={!currentFile}>
+                <div className='sm:ml-4'>
+                  <Button
+                    variant='outlined'
+                    onClick={handleClose}
+                    disabled={!videoUpload.currentFile || !videoUpload.title || !videoUpload.description}>
                     Cancelar
                   </Button>
                 </div>

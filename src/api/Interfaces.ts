@@ -24,3 +24,9 @@ export interface VideoParameters {
   field: string;
   value: string;
 }
+
+export interface VideoRequestBody {
+  currentFile?: File;
+  title: string;
+  description: string;
+}

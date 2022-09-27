@@ -1,4 +1,4 @@
-import { Profile, VideosDetailsDto, VideosDto } from './Interfaces';
+import { Profile, VideoRequestBody, VideosDetailsDto, VideosDto } from './Interfaces';
 import client from './VideoClient';
 
 export async function getProfile(): Promise<Profile> {
@@ -34,14 +34,13 @@ export async function getVideosById(id: string): Promise<VideosDetailsDto> {
     });
 }
 
-export async function uploadVideo(file: File): Promise<void> {
+export async function uploadVideo(body: VideoRequestBody): Promise<void> {
   const formData = new FormData();
-  formData.append('file', file);
-  formData.append(
-    'description',
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
-  );
-  formData.append('title', 'Corazon');
+  if (body.currentFile) {
+    formData.append('file', body.currentFile);
+  }
+  formData.append('description', body.description);
+  formData.append('title', body.title);
   return client
     .post(`/media`, formData)
     .then(response => {
