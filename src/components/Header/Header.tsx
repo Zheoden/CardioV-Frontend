@@ -13,8 +13,10 @@ import LogoutButton from '../Session/LogoutButton';
 import { CustomRoutes } from '../../common/Constants';
 
 import './Header.scss';
+import { useContextState } from 'src/common/ContextState/ContextState';
 
 const Header = () => {
+  const { contextState, setContextState } = useContextState();
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
@@ -94,7 +96,7 @@ const Header = () => {
 
       <div className='flex grow-0 mr-8'>
         <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-          <Avatar sx={{ width: 42, height: 42 }}>{/* Avatar content */}</Avatar>
+          <Avatar sx={{ width: 42, height: 42 }} src={contextState.user.avatar} />
         </IconButton>
         <Menu
           sx={{ mt: '45px' }}
@@ -113,14 +115,14 @@ const Header = () => {
           onClose={handleCloseUserMenu}>
           <MenuItem>
             <Link to='/profile' key='profile' className='flex flex-row'>
-              <Avatar />
-              <span className='my-auto'>Profile</span>
+              <Avatar sx={{ width: 42, height: 42 }} src={contextState.user.avatar} />
+              <span className='my-auto ml-2'>Profile</span>
             </Link>
           </MenuItem>
           <hr />
           <MenuItem>
             <Logout fontSize='small' />
-            <LogoutButton text='Cerrar Sesion' />
+            <LogoutButton className='ml-2' text='Cerrar Sesion' />
           </MenuItem>
         </Menu>
       </div>

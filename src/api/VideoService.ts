@@ -12,6 +12,17 @@ export async function getProfile(): Promise<Profile> {
     });
 }
 
+export async function updateProfile(body: Profile): Promise<Profile> {
+  return client
+    .patch('/user/me', body)
+    .then(response => {
+      return response.data;
+    })
+    .catch(err => {
+      throw err;
+    });
+}
+
 export async function getVideos(filter: string = ''): Promise<VideosDto[]> {
   return client
     .get(`/media/me?query=${filter}`)
