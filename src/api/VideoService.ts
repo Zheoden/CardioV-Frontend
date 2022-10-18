@@ -8,6 +8,20 @@ export async function getProfile(): Promise<Profile> {
       return response.data;
     })
     .catch(err => {
+      if (err.response.data.message === 'USER_NOT_FOUND') {
+        return registerProfile();
+      }
+      throw err;
+    });
+}
+
+export async function registerProfile(): Promise<Profile> {
+  return client
+    .post('/user/register')
+    .then(response => {
+      return response.data;
+    })
+    .catch(err => {
       throw err;
     });
 }

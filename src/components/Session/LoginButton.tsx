@@ -36,6 +36,7 @@ const LoginButton = (props: LoginButtonProps) => {
 
     getProfile()
       .then(user => {
+        navigate(contextState.redirectUrl || '/');
         setContextState({
           type: ActionTypes.SetUser,
           value: { firstName: user.firstName, lastName: user.lastName, birthdate: user.birthdate, avatar: user.avatar },
@@ -44,7 +45,6 @@ const LoginButton = (props: LoginButtonProps) => {
       .catch();
 
     refreshToken(res);
-    navigate(contextState.redirectUrl);
   };
 
   const onFailure = (res: unknown) => {

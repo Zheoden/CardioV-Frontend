@@ -7,10 +7,9 @@ const Protected = (props: any) => {
 
   const { children } = props;
   if (!contextState.userToken) {
-    console.log();
     setContextState({
       type: ActionTypes.SetRedirectURL,
-      value: window.location.pathname,
+      value: window.location.pathname !== 'login' ? window.location.pathname : '/',
     });
     return <Navigate to='/login' replace />;
   }
