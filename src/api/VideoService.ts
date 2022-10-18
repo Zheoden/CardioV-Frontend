@@ -75,3 +75,14 @@ export async function uploadVideo(body: VideoRequestBody): Promise<void> {
       throw err;
     });
 }
+
+export async function deleteVideoById(id: string): Promise<VideosDetailsDto> {
+  return client
+    .delete(`/media/${id}`)
+    .then(response => {
+      return response.data;
+    })
+    .catch(err => {
+      throw err;
+    });
+}

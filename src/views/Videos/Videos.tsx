@@ -13,8 +13,10 @@ const Videos = () => {
   const [filteredVideos, setFilteredVideos] = useState<VideosDto[]>([]);
   const [buscador, setBuscador] = useState<string>('');
   const [openModal, setOpenModal] = useState<boolean>(false);
+  const [deleteRequest, setDeleteRequest] = useState<boolean>(false);
 
   const handleModalState = () => setOpenModal(!openModal);
+  const handleDeleteRequest = () => setDeleteRequest(!deleteRequest);
 
   useEffect(() => {
     getVideos(buscador)
@@ -24,7 +26,7 @@ const Videos = () => {
       .catch(err => {
         console.log(err);
       });
-  }, [openModal]);
+  }, [openModal, deleteRequest]);
 
   useEffect(() => {
     const filterRegex = new RegExp(`.*${buscador.toLowerCase()}.*`);
@@ -58,7 +60,7 @@ const Videos = () => {
         </div>
         <div className='flex flex-wrap'>
           {filteredVideos.length > 0 ? (
-            filteredVideos.map(video => <VideoCard video={video} key={video.id} />)
+            filteredVideos.map(video => <VideoCard video={video} handleDeleteRequest={handleDeleteRequest} key={video.id} />)
           ) : (
             <div className='flex mx-auto'> No se encontraron videos que coincidan con su busqueda</div>
           )}
