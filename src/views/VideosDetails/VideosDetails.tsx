@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { VideosDetailsDto } from 'src/api/Interfaces';
 import { getVideosById } from 'src/api/VideoService';
+import { capitalizeSentence } from 'src/utils/string';
 import Layout from '../Layout/Layout';
 
 const VideosDetails = () => {
@@ -30,7 +31,7 @@ const VideosDetails = () => {
               <div className='flex flex-wrap max-w-screen-lg'>
                 {videoDetails?.parameters.map(param => (
                   <div className='ml-8' key={param.field}>
-                    <TextField disabled label={param.field} defaultValue={param.value} variant='standard' />
+                    <TextField disabled label={capitalizeSentence(param.field)} defaultValue={param.value} variant='standard' />
                   </div>
                 ))}
               </div>
