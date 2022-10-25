@@ -29,10 +29,10 @@ const VideoUploadModal = (props: VideoUploadModalProps) => {
     const file = event.target.files && event?.target?.files[0];
     const fileExtensions = file?.name.split('.') ?? [];
     const fileExtension = fileExtensions[fileExtensions.length - 1];
-    if (fileExtension === 'jpg' || fileExtension === 'jpeg' || fileExtension === 'png' || fileExtension === 'mp4') {
+    if (fileExtension === 'jpg' || fileExtension === 'jpeg' || fileExtension === 'png' || fileExtension === 'mp4' || fileExtension === 'avi') {
       setVideoUpload({ ...videoUpload, currentFile: file ?? undefined });
     } else {
-      console.log('Solo se soportan archivos de tipo jpg, jpeg, png o mp4');
+      window.alert('Solo se soportan archivos de tipo jpg, jpeg, png, mp4 o avi');
     }
   };
 
@@ -95,7 +95,7 @@ const VideoUploadModal = (props: VideoUploadModalProps) => {
                       <UploadIcon />
                       <span className='font-medium text-gray-600'>Arrastra un archivo para subirlo, o Buscalo</span>
                     </span>
-                    <input type='file' className='hidden' accept='.jpg, .jpeg, .png, .mp4' onChange={handleVideoSelecction} />
+                    <input type='file' className='hidden' accept='.jpg, .jpeg, .png, .mp4, .avi' onChange={handleVideoSelecction} />
                   </label>
                 )}
               </div>
