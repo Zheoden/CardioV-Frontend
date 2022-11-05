@@ -5,6 +5,7 @@ export const initialState: State = {
   loading: true,
   redirectUrl: '',
   userToken: '',
+  invalidUser: false,
   user: {
     firstName: '',
     lastName: '',
@@ -29,6 +30,11 @@ export const reducer = (state: State = initialState, action: Actions) => {
       return {
         ...state,
         userToken: action.value,
+      };
+    case ActionTypes.SetUserValidity:
+      return {
+        ...state,
+        invalidUser: action.value,
       };
     case ActionTypes.SetUser:
       return {
