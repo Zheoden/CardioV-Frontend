@@ -30,7 +30,12 @@ const Videos = () => {
 
   useEffect(() => {
     const filterRegex = new RegExp(`.*${buscador.toLowerCase()}.*`);
-    const filtered = videos.filter(video => video.title.toLowerCase().match(filterRegex) || video.description.toLowerCase().match(filterRegex));
+    const filtered = videos.filter(
+      video =>
+        video.title.toLowerCase().match(filterRegex) ||
+        video.description.toLowerCase().match(filterRegex) ||
+        video.patology.toLowerCase().match(filterRegex),
+    );
     setFilteredVideos(filtered);
   }, [buscador, videos]);
 

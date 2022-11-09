@@ -2,8 +2,20 @@ import LogoutButton from 'src/components/Session/LogoutButton';
 import GoogleIcon from '@mui/icons-material/Google';
 import Lottie from 'react-lottie';
 import animationData from '../../assets/lotties/401-error.json';
+import { useEffect } from 'react';
+import { useContextState } from 'src/common/ContextState/ContextState';
+import { useNavigate } from 'react-router-dom';
 
 const NotAuthorized = () => {
+  const { contextState, setContextState } = useContextState();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!contextState.invalidUser) {
+      navigate('/');
+    }
+  }, []);
+
   const defaultOptions = {
     loop: true,
     autoplay: true,

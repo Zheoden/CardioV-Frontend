@@ -30,14 +30,14 @@ const LoginButton = (props: LoginButtonProps) => {
   const onSuccess = (res: any) => {
     const userEmail = res.profileObj.email;
     const emailDomain: string = userEmail.split('@')[1];
-    console.log(emailDomain);
+
     localStorage.setItem('token', res.tokenId);
     setContextState({
       type: ActionTypes.SetToken,
       value: res?.tokenId,
     });
 
-    if (!emailDomain.match(/.*\.utn\.edu.\.ar.*/)) {
+    if (!emailDomain.match(/.*\.utn\.edu\.ar.*/gim)) {
       setContextState({
         type: ActionTypes.SetUserValidity,
         value: true,

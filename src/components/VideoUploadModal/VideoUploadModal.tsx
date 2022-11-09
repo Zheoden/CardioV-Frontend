@@ -16,6 +16,7 @@ const VideoUploadModal = (props: VideoUploadModalProps) => {
   const [videoUpload, setVideoUpload] = useState<VideoRequestBody>({
     currentFile: undefined,
     title: '',
+    patology: '',
     description: '',
   });
   const [loading, setLoading] = useState<boolean>(false);
@@ -69,10 +70,17 @@ const VideoUploadModal = (props: VideoUploadModalProps) => {
               <div className='flex flex-col w-full mt-8'>
                 <input
                   type='text'
-                  placeholder='Titulo'
+                  placeholder='Paciente'
                   value={videoUpload.title}
                   onChange={e => setVideoUpload({ ...videoUpload, title: e.target.value })}
                   className='flex w-full p-2 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300'
+                />
+                <input
+                  type='text'
+                  placeholder='Patologia'
+                  value={videoUpload.patology}
+                  onChange={e => setVideoUpload({ ...videoUpload, patology: e.target.value })}
+                  className='flex w-full p-2 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 mt-2'
                 />
                 <textarea
                   placeholder='Descripcion'
@@ -104,7 +112,7 @@ const VideoUploadModal = (props: VideoUploadModalProps) => {
                   <Button
                     variant='outlined'
                     onClick={handleUploadVideo}
-                    disabled={!videoUpload.currentFile || !videoUpload.title || !videoUpload.description}>
+                    disabled={!videoUpload.currentFile || !videoUpload.title || !videoUpload.description || !videoUpload.patology}>
                     Subir
                   </Button>
                 </div>
@@ -112,7 +120,7 @@ const VideoUploadModal = (props: VideoUploadModalProps) => {
                   <Button
                     variant='outlined'
                     onClick={handleClose}
-                    disabled={!videoUpload.currentFile || !videoUpload.title || !videoUpload.description}>
+                    disabled={!videoUpload.currentFile || !videoUpload.title || !videoUpload.description || !videoUpload.patology}>
                     Cancelar
                   </Button>
                 </div>

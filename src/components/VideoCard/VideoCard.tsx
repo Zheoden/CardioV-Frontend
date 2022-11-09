@@ -31,6 +31,7 @@ const VideoCard = (props: VideoCardProps) => {
             <CardContent>
               <div className='flex flex-col'>
                 <h5 className='text-2xl mt-0 mb-2'>{video.title}</h5>
+                <h6 className='text-2xl mt-0 mb-2'>{video.patology}</h6>
                 <span>{video.description}</span>
                 <div
                   className='flex self-end'

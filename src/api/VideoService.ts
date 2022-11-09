@@ -66,6 +66,7 @@ export async function uploadVideo(body: VideoRequestBody): Promise<void> {
   }
   formData.append('description', body.description);
   formData.append('title', body.title);
+  formData.append('patology', body.patology);
   return client
     .post(`/media`, formData)
     .then(response => {
