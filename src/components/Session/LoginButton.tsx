@@ -28,19 +28,31 @@ const LoginButton = (props: LoginButtonProps) => {
   });
 
   const onSuccess = (res: any) => {
+    const userEmail = res.profileObj.email;
+    const emailDomain: string = userEmail.split('@')[1];
+
     localStorage.setItem('token', res.tokenId);
     setContextState({
       type: ActionTypes.SetToken,
       value: res?.tokenId,
     });
 
+    if (!emailDomain.match(/.*\.utn\.edu\.ar.*/gim)) {
+      setContextState({
+        type: ActionTypes.SetUserValidity,
+        value: true,
+      });
+      navigate('/not-authorized');
+      return;
+    }
+
     getProfile()
       .then(user => {
-        navigate(contextState.redirectUrl || '/');
         setContextState({
           type: ActionTypes.SetUser,
           value: { firstName: user.firstName, lastName: user.lastName, birthdate: user.birthdate, avatar: user.avatar },
         });
+        navigate(contextState.redirectUrl || '/');
       })
       .catch();
 

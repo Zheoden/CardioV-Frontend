@@ -2,6 +2,7 @@ export interface State {
   loading: Boolean;
   redirectUrl: string;
   userToken: string;
+  invalidUser: boolean;
   user: UserState;
 }
 
@@ -17,6 +18,7 @@ export enum ActionTypes {
   SetRedirectURL = 'SET_REDIRECTURL',
   SetToken = 'SET_TOKEN',
   SetUser = 'SET_USER',
+  SetUserValidity = 'SET_USER_VALIDITY',
 }
 
 export interface Actions {

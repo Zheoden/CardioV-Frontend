@@ -9,6 +9,7 @@ export interface VideosDto {
   id: string;
   title: string;
   description: string;
+  patology: string;
   thumbnail: string;
 }
 
@@ -22,11 +23,13 @@ export interface VideosDetailsDto {
 
 export interface VideoParameters {
   field: string;
-  value: string;
+  value: number;
+  unit: string;
 }
 
 export interface VideoRequestBody {
   currentFile?: File;
   title: string;
+  patology: string;
   description: string;
 }

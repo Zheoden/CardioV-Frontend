@@ -13,6 +13,9 @@ const Protected = (props: any) => {
     });
     return <Navigate to='/login' replace />;
   }
+  if (contextState.invalidUser) {
+    return <Navigate to='/not-authorized' replace />;
+  }
   return children;
 };
 export default Protected;

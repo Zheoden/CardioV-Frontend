@@ -2,7 +2,6 @@ import { Card, CardMedia, CardContent } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { VideosDto } from 'src/api/Interfaces';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import './VideoCard.scss';
 import { useState } from 'react';
 import { deleteVideoById } from 'src/api/VideoService';
 import Spinner from '../Spinner/Spinner';
@@ -23,7 +22,7 @@ const VideoCard = (props: VideoCardProps) => {
         <Spinner show />
       ) : (
         <Card sx={{ maxWidth: 275 }}>
-          {videoType === 'mp4' ? (
+          {videoType === 'mp4' || videoType === 'avi' ? (
             <video className='source-card' src={video.thumbnail} controls />
           ) : (
             <img src={video.thumbnail} className='flex mx-auto source-card' height='140' width='140' />
@@ -32,6 +31,7 @@ const VideoCard = (props: VideoCardProps) => {
             <CardContent>
               <div className='flex flex-col'>
                 <h5 className='text-2xl mt-0 mb-2'>{video.title}</h5>
+                <h6 className='text-2xl mt-0 mb-2'>{video.patology}</h6>
                 <span>{video.description}</span>
                 <div
                   className='flex self-end'
