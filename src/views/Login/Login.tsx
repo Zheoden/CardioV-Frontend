@@ -1,5 +1,4 @@
 import LoginButton from 'src/components/Session/LoginButton';
-import GoogleIcon from '@mui/icons-material/Google';
 import Avatar from '@mui/material/Avatar';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
@@ -17,8 +16,7 @@ const Login = () => {
             </div>
             <h1 className='mx-auto mb-8 text-2xl'>Log in</h1>
             <div className='flex flex-row bg-cyan-500 hover:bg-cyan-700 rounded-full py-2 px-4'>
-              <GoogleIcon />
-              <LoginButton text='Iniciar Sesion' className='ml-3' />
+              <LoginButton text='Iniciar Sesion' />
             </div>
           </div>
         </div>

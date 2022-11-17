@@ -6,6 +6,7 @@ import { ActionTypes } from 'src/common/ContextState/Interfaces';
 import { googleClientId, refreshToken } from 'src/common/GoogleUtils';
 import { useNavigate } from 'react-router-dom';
 import { getProfile } from 'src/api/VideoService';
+import GoogleIcon from '@mui/icons-material/Google';
 
 interface LoginButtonProps {
   className?: string;
@@ -64,21 +65,22 @@ const LoginButton = (props: LoginButtonProps) => {
   };
 
   return (
-    <div>
-      <GoogleLogin
-        clientId={googleClientId}
-        buttonText='Log in with Google'
-        render={renderProps => (
-          <button onClick={renderProps.onClick} disabled={renderProps.disabled} className={className}>
+    <GoogleLogin
+      clientId={googleClientId}
+      buttonText='Log in with Google'
+      render={renderProps => (
+        <div onClick={renderProps.onClick} className='cursor-pointer w-full'>
+          <GoogleIcon />
+          <button disabled={renderProps.disabled} className='ml-3'>
             {text}
           </button>
-        )}
-        onSuccess={onSuccess}
-        onFailure={onFailure}
-        cookiePolicy={'single_host_origin'}
-        isSignedIn
-      />
-    </div>
+        </div>
+      )}
+      onSuccess={onSuccess}
+      onFailure={onFailure}
+      cookiePolicy={'single_host_origin'}
+      isSignedIn
+    />
   );
 };
 
