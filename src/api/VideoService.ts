@@ -66,6 +66,31 @@ export async function getVideos(filter: string = ''): Promise<VideosDto[]> {
     }); */
   return Promise.resolve([
     {
+      patology: 'string',
+      id: 'string',
+      title: 'string',
+      description: 'string',
+      thumbnail: 'string',
+      parameters: [
+        { field: 'string', value: 'string', unit: 'string'},
+        { field: 'string', value: 'string', unit: 'string'},
+        { field: 'string', value: 'string', unit: 'string'},
+      ],
+    },
+    {
+      patology: 'string',
+      id: 'string',
+      title: 'string',
+      description: 'string',
+      thumbnail: 'string',
+      parameters: [
+        { field: 'string', value: 'string', unit: 'string'},
+        { field: 'string', value: 'string', unit: 'string'},
+        { field: 'string', value: 'string', unit: 'string' },
+      ],
+    },
+    {
+      patology: 'string',
       id: 'string',
       title: 'string',
       description: 'string',
@@ -77,47 +102,27 @@ export async function getVideos(filter: string = ''): Promise<VideosDto[]> {
       ],
     },
     {
+      patology: 'string',
       id: 'string',
       title: 'string',
       description: 'string',
       thumbnail: 'string',
       parameters: [
-        { field: 'string', value: 'string' },
-        { field: 'string', value: 'string' },
-        { field: 'string', value: 'string' },
+        { field: 'string', value: 'string',  unit: 'string'},
+        { field: 'string', value: 'string',  unit: 'string'},
+        { field: 'string', value: 'string',  unit: 'string'},
       ],
     },
     {
+      patology: 'string',
       id: 'string',
       title: 'string',
       description: 'string',
       thumbnail: 'string',
       parameters: [
-        { field: 'string', value: 'string' },
-        { field: 'string', value: 'string' },
-        { field: 'string', value: 'string' },
-      ],
-    },
-    {
-      id: 'string',
-      title: 'string',
-      description: 'string',
-      thumbnail: 'string',
-      parameters: [
-        { field: 'string', value: 'string' },
-        { field: 'string', value: 'string' },
-        { field: 'string', value: 'string' },
-      ],
-    },
-    {
-      id: 'string',
-      title: 'string',
-      description: 'string',
-      thumbnail: 'string',
-      parameters: [
-        { field: 'string', value: 'string' },
-        { field: 'string', value: 'string' },
-        { field: 'string', value: 'string' },
+        { field: 'string', value: 'string', unit: 'string'},
+        { field: 'string', value: 'string', unit: 'string'},
+        { field: 'string', value: 'string', unit: 'string'},
       ],
     },
   ]);
@@ -133,14 +138,16 @@ export async function getVideosById(id: string): Promise<VideosDetailsDto> {
       throw err;
     }); */
   return Promise.resolve({
+    patology: 'string',
     id: 'string',
     title: 'string',
     description: 'string',
     thumbnail: 'string',
     parameters: [
-      { field: 'string', value: 'string' },
-      { field: 'string', value: 'string' },
-      { field: 'string', value: 'string' },
+      { field: 'string', value: 'string', unit: 'string' },
+      { field: 'string', value: 'string', unit: 'string' },
+      { field: 'string', value: 'string', unit: 'string' },
+      { field: 'string', value: 'string', unit: 'string' },
     ],
   });
 }
