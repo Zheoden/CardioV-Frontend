@@ -1,6 +1,7 @@
 import LoginButton from 'src/components/Session/LoginButton';
 import Avatar from '@mui/material/Avatar';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Logo from '../../assets/Logo-Oscuro.png';
 
 const Login = () => {
   return (
@@ -9,12 +10,10 @@ const Login = () => {
       <div className='flex-1 p-16 bg-slate-50 shadow-2xl'>
         <div className='flex flex-col h-full'>
           <div className='flex flex-col my-auto'>
-            <div className='flex mx-auto'>
-              <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                <LockOutlinedIcon />
-              </Avatar>
+            <div className='text-center'>
+              <img src={Logo} style={{ width: '185px' }} alt='logo' className='rounded mx-auto d-block' />
+              <h4 className='mt-1 mb-5 pb-1'>CardioV Software</h4>
             </div>
-            <h1 className='mx-auto mb-8 text-2xl'>Log in</h1>
             <div className='flex flex-row bg-cyan-500 hover:bg-cyan-700 rounded-full py-2 px-4'>
               <LoginButton text='Iniciar Sesion' />
             </div>
