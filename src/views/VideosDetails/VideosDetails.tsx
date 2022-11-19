@@ -8,6 +8,11 @@ import Layout from '../Layout/Layout';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 
+import ListItemText from '@mui/material/ListItemText';
+import Avatar from '@mui/material/Avatar';
+import MonitorHeartIcon from '@mui/icons-material/MonitorHeart';
+import MedicalInformationTwoToneIcon from '@mui/icons-material/MedicalInformationTwoTone';
+
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 export const options = {
@@ -62,7 +67,7 @@ const VideosDetails = () => {
       setVentricleArea(ventricleArea.map(ventricleArea => Number(ventricleArea.value)).reduce((a, b) => a + b) / ventricleArea.length);
     }
 
-    setVentricleVolume(ventricleVolume?.map(volume => volume.value) ?? []);
+    setVentricleVolume(ventricleVolume?.map(volume => Number(volume.value)) ?? []);
   }, [videoDetails]);
 
   return (
@@ -79,42 +84,69 @@ const VideosDetails = () => {
           <CardContent>
             <h5 className='flex text-2xl mt-0 mb-2 mx-auto w-max'>Detalles</h5>
             <div className='flex flex-col font-bold'>
-              <div className='flex flex-wrap max-w-screen-lg'>
+              <div className='flex flex-col max-w-screen-lg'>
                 {!!atriumArea && (
-                  <div className='ml-8'>
-                    <TextField disabled label='Area Auricular' defaultValue={atriumArea} variant='standard' />
+                  <div className='flex flex-row mt-5'>
+                    <div className='flex my-auto mr-4'>
+                      <Avatar>
+                        <MonitorHeartIcon />
+                      </Avatar>
+                    </div>
+                    <ListItemText primary='Area Auricular' secondary={atriumArea + ' cm3'} />
                   </div>
                 )}
                 {!!muscleThickness && (
-                  <div className='ml-8'>
-                    <TextField disabled label='Espesor de las paredes' defaultValue={muscleThickness} variant='standard' />
+                  <div className='flex flex-row mt-5'>
+                    <div className='flex my-auto mr-4'>
+                      <Avatar>
+                        <MonitorHeartIcon />
+                      </Avatar>
+                    </div>
+                    <ListItemText primary='Espesor de las paredes' secondary={muscleThickness + ' cm3'} />
                   </div>
                 )}
                 {!!ventricleArea && (
-                  <div className='ml-8'>
-                    <TextField disabled label='Area Ventricular' defaultValue={ventricleArea} variant='standard' />
+                  <div className='flex flex-row mt-5'>
+                    <div className='flex my-auto mr-4'>
+                      <Avatar>
+                        <MonitorHeartIcon />
+                      </Avatar>
+                    </div>
+                    <ListItemText primary='Area Ventricular' secondary={ventricleArea + ' cm3'} />
+                  </div>
+                )}
+                {ventricleVolume.length === 1 && (
+                  <div className='flex flex-row mt-8'>
+                    <div className='flex my-auto mr-4'>
+                      <Avatar>
+                        <MedicalInformationTwoToneIcon />
+                      </Avatar>
+                    </div>
+                    <ListItemText primary='Volumen Ventricular' secondary={ventricleVolume[0] + ' cm3'} />
                   </div>
                 )}
               </div>
             </div>
           </CardContent>
         </Card>
-        <div className='flex w-6/12 h-60 mx-auto'>
-          <Line
-            options={options}
-            data={{
-              labels: ventricleVolume.map((_, index) => String(index)),
-              datasets: [
-                {
-                  label: 'Volumen Ventricular',
-                  data: ventricleVolume,
-                  borderColor: 'rgb(255, 99, 132)',
-                  backgroundColor: 'rgba(255, 99, 132, 0.5)',
-                },
-              ],
-            }}
-          />
-        </div>
+        {ventricleVolume.length > 1 && (
+          <div className='flex w-6/12 h-60 mx-auto'>
+            <Line
+              options={options}
+              data={{
+                labels: ventricleVolume.map((_, index) => String(index)),
+                datasets: [
+                  {
+                    label: 'Volumen Ventricular',
+                    data: ventricleVolume,
+                    borderColor: 'rgb(255, 99, 132)',
+                    backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                  },
+                ],
+              }}
+            />
+          </div>
+        )}
       </div>
     </Layout>
   );
