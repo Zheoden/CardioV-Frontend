@@ -69,11 +69,13 @@ const LoginButton = (props: LoginButtonProps) => {
       clientId={googleClientId}
       buttonText='Log in with Google'
       render={renderProps => (
-        <div onClick={renderProps.onClick} className='cursor-pointer w-full'>
-          <GoogleIcon />
-          <button disabled={renderProps.disabled} className='ml-3'>
-            {text}
-          </button>
+        <div onClick={renderProps.onClick} className='flex cursor-pointer w-full'>
+          <div className='mx-auto'>
+            <GoogleIcon />
+            <button disabled={renderProps.disabled} className='ml-3'>
+              {text}
+            </button>
+          </div>
         </div>
       )}
       onSuccess={onSuccess}
