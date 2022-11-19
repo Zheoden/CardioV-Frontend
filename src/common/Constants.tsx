@@ -16,7 +16,7 @@ export interface CustomRoute {
 export const CustomRoutes: CustomRoute[] = [
   {
     path: '/',
-    component: Home,
+    component: Videos,
     shouldDisplay: false,
   },
   {
@@ -28,7 +28,7 @@ export const CustomRoutes: CustomRoute[] = [
     key: 'profile',
   },
   {
-    path: '/echocardiogram',
+    path: '/',
     component: Videos,
     shouldDisplay: true,
     displayName: 'Ecocardiogramas',
@@ -37,7 +37,7 @@ export const CustomRoutes: CustomRoute[] = [
     key: 'echocardiogram',
   },
   {
-    path: '/echocardiogram/:id',
+    path: '/:id',
     component: VideosDetails,
     shouldDisplay: false,
   },

@@ -32,7 +32,7 @@ const Header = () => {
   return (
     <div className='header flex flex-row my-auto bg-sky-500 w-screen p-2 justify-between'>
       <div className='md:flex hidden flex-row'>
-        <Link to='/echocardiogram' key='echocardiogram'>
+        <Link to='/' key='echocardiogram'>
           <img src={Logo} className='logo my-auto' alt='CardioV' />
         </Link>
       </div>
@@ -44,13 +44,13 @@ const Header = () => {
         <span className='uppercase font-bold'>Volver</span>
       </div>
       <div className='flex md:hidden flex-row grow'>
-        <Link to='/echocardiogram' key='echocardiogram'>
+        <Link to='/' key='echocardiogram'>
           <img src={Logo} className='logo my-auto' alt='CardioV' />
         </Link>
       </div>
       <div className='md:flex hidden flex-row my-auto'>
         {CustomRoutes.filter(route => route.shouldDisplay).map(page => (
-          <div className='flex flex-row text-white uppercase font-bold' key={page.displayName}>
+          <div className='flex flex-row text-white uppercase font-bold font-mono' key={page.displayName}>
             <span className={`my-auto text-xl text-center px-2 ${page.path === window.location.pathname ? '' : 'hidden'}`}>{page.displayName}</span>
           </div>
         ))}
