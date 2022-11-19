@@ -28,16 +28,16 @@ export const CustomRoutes: CustomRoute[] = [
     key: 'profile',
   },
   {
-    path: '/videos',
+    path: '/echocardiogram',
     component: Videos,
     shouldDisplay: true,
-    displayName: 'Videos',
+    displayName: 'Ecocardiogramas',
     description:
       'Esta vista te permite subir nuevos videos o imagenes para ser procesados. Tambien te permite ver informacion de videos e imagenes subidos previamente.',
-    key: 'video',
+    key: 'echocardiogram',
   },
   {
-    path: '/videos/:id',
+    path: '/echocardiogram/:id',
     component: VideosDetails,
     shouldDisplay: false,
   },

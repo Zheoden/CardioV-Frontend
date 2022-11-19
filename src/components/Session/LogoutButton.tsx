@@ -5,14 +5,16 @@ import { useNavigate } from 'react-router-dom';
 import { useContextState } from 'src/common/ContextState/ContextState';
 import { ActionTypes } from 'src/common/ContextState/Interfaces';
 import { googleClientId } from 'src/common/GoogleUtils';
+import GoogleIcon from '@mui/icons-material/Google';
 
 interface LogoutButtonProps {
   className?: string;
   text: string;
+  renderIcon?: boolean;
 }
 
 const LogoutButton = (props: LogoutButtonProps) => {
-  const { className, text } = props;
+  const { className, text, renderIcon } = props;
   const { contextState, setContextState } = useContextState();
   const navigate = useNavigate();
 
@@ -39,18 +41,23 @@ const LogoutButton = (props: LogoutButtonProps) => {
   };
 
   return (
-    <div className='flex grow'>
-      <GoogleLogout
-        clientId={googleClientId}
-        buttonText='Log out'
-        onLogoutSuccess={onSuccess}
-        render={renderProps => (
-          <button onClick={renderProps.onClick} disabled={renderProps.disabled} className={className}>
-            {text}
-          </button>
-        )}
-      />
-    </div>
+    <GoogleLogout
+      clientId={googleClientId}
+      buttonText='Log out'
+      onLogoutSuccess={onSuccess}
+      render={renderProps => (
+        <div onClick={renderProps.onClick} className='flex cursor-pointer w-full'>
+          <div className='flex flex-row mx-auto'>
+            <div className={`${renderIcon ? '' : 'hidden'}`}>
+              <GoogleIcon />
+            </div>
+            <button disabled={renderProps.disabled} className='ml-3'>
+              {text}
+            </button>
+          </div>
+        </div>
+      )}
+    />
   );
 };
 

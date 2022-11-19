@@ -53,7 +53,7 @@ const LoginButton = (props: LoginButtonProps) => {
           type: ActionTypes.SetUser,
           value: { firstName: user.firstName, lastName: user.lastName, birthdate: user.birthdate, avatar: user.avatar },
         });
-        navigate(contextState.redirectUrl || '/');
+        navigate(contextState.redirectUrl || '/echocardiogram');
       })
       .catch();
 
