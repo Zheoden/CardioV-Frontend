@@ -70,9 +70,9 @@ export async function getVideos(filter: string = ''): Promise<VideosDto[]> {
       description: 'string',
       thumbnail: 'string',
       parameters: [
-        { field: 'string', value: 'string', unit: 'string' },
-        { field: 'string', value: 'string', unit: 'string' },
-        { field: 'string', value: 'string', unit: 'string' },
+        { field: 'ATRIUM_AREA', value: 'string', unit: 'string' },
+        { field: 'MUSCLE_THICKNESS', value: 'string', unit: 'string' },
+        { field: 'VENTRICLE_AREA', value: 'string', unit: 'string' },
       ],
     },
     {
@@ -142,10 +142,10 @@ export async function getVideosById(id: string): Promise<VideosDetailsDto> {
     description: 'string',
     thumbnail: 'string',
     parameters: [
-      { field: 'string', value: 1, unit: 'string' },
-      { field: 'string', value: 2, unit: 'string' },
-      { field: 'string', value: 3, unit: 'string' },
-      { field: 'string', value: 4, unit: 'string' },
+      { field: 'VENTRICLE_AREA', value: 1, unit: 'string' },
+      { field: 'VENTRICLE_VOLUME', value: 2, unit: 'string' },
+      { field: 'MUSCLE_THICKNESS', value: 3, unit: 'string' },
+      { field: 'ATRIUM_AREA', value: 4, unit: 'string' },
     ],
   });
 }

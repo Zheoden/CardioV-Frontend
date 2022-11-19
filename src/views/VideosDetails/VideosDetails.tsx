@@ -116,7 +116,7 @@ const VideosDetails = () => {
                   </div>
                 )}
                 {ventricleVolume.length === 1 && (
-                  <div className='flex flex-row mt-8'>
+                  <div className='flex flex-row mt-5'>
                     <div className='flex my-auto mr-4'>
                       <Avatar>
                         <MedicalInformationTwoToneIcon />
