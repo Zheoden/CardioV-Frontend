@@ -5,9 +5,6 @@ import { VideosDetailsDto } from 'src/api/Interfaces';
 import { getVideosById } from 'src/api/VideoService';
 import Layout from '../Layout/Layout';
 
-import Carousel from 'react-material-ui-carousel';
-import { Paper, Button } from '@mui/material';
-
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 
