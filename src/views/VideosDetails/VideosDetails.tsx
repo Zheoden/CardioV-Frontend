@@ -115,7 +115,7 @@ const VideosDetails = () => {
             }}
           />
         </div>
-        <div className='flex flex-row mx-auto'>
+        <div className='flex flex-col mx-auto'>
           {videoDetails?.media.map(media => {
             const mediaParts = media.thumbnail.split('.');
             const mediaExtension = mediaParts[mediaParts.length - 1];
@@ -123,9 +123,9 @@ const VideosDetails = () => {
               <div className='flex flex-col ml-4' key={media.thumbnail}>
                 <h2>{media.title}</h2>
                 {mediaExtension === 'mp4' || mediaExtension === 'avi' ? (
-                  <video className='source-card mx-auto' src={media.thumbnail} controls />
+                  <video className='source-card-media mx-auto' src={media.thumbnail} controls />
                 ) : (
-                  <img src={media.thumbnail} className='flex mx-auto source-card' height='140' width='140' />
+                  <img src={media.thumbnail} className='flex mx-auto source-card-media' height='140' width='140' />
                 )}
               </div>
             );
