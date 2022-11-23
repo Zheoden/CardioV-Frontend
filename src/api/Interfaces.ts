@@ -19,12 +19,18 @@ export interface VideosDetailsDto {
   description: string;
   thumbnail: string;
   parameters: VideoParameters[];
+  media: MediaParameters[];
 }
 
 export interface VideoParameters {
   field: string;
   value: number;
   unit: string;
+}
+
+export interface MediaParameters {
+  thumbnail: string;
+  title: string;
 }
 
 export interface VideoRequestBody {

@@ -5,6 +5,9 @@ import { VideosDetailsDto } from 'src/api/Interfaces';
 import { getVideosById } from 'src/api/VideoService';
 import Layout from '../Layout/Layout';
 
+import Carousel from 'react-material-ui-carousel';
+import { Paper, Button } from '@mui/material';
+
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 
@@ -99,7 +102,7 @@ const VideosDetails = () => {
             </div>
           </CardContent>
         </Card>
-        <div className='flex w-6/12 h-60 mx-auto'>
+        <div className='flex flex-col w-6/12 h-60 mx-auto'>
           <Line
             options={options}
             data={{
@@ -114,6 +117,22 @@ const VideosDetails = () => {
               ],
             }}
           />
+        </div>
+        <div className='flex flex-row mx-auto'>
+          {videoDetails?.media.map(media => {
+            const mediaParts = media.thumbnail.split('.');
+            const mediaExtension = mediaParts[mediaParts.length - 1];
+            return (
+              <div className='flex flex-col ml-4' key={media.thumbnail}>
+                <h2>{media.title}</h2>
+                {mediaExtension === 'mp4' || mediaExtension === 'avi' ? (
+                  <video className='source-card mx-auto' src={media.thumbnail} controls />
+                ) : (
+                  <img src={media.thumbnail} className='flex mx-auto source-card' height='140' width='140' />
+                )}
+              </div>
+            );
+          })}
         </div>
       </div>
     </Layout>
