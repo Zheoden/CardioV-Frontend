@@ -132,7 +132,7 @@ const VideosDetails = () => {
           </CardContent>
         </Card>
         {ventricleVolume.length > 1 && (
-          <div className='flex w-6/12 h-60 mx-auto'>
+          <div className='flex flex-col w-6/12 h-60 mx-auto'>
             <Line
               options={options}
               data={{
@@ -149,6 +149,22 @@ const VideosDetails = () => {
             />
           </div>
         )}
+        <div className='flex flex-col mx-auto'>
+          {videoDetails?.media.map(media => {
+            const mediaParts = media.thumbnail.split('.');
+            const mediaExtension = mediaParts[mediaParts.length - 1];
+            return (
+              <div className='flex flex-col ml-4' key={media.thumbnail}>
+                <h2>{media.title}</h2>
+                {mediaExtension === 'mp4' || mediaExtension === 'avi' ? (
+                  <video className='source-card-media mx-auto' src={media.thumbnail} controls />
+                ) : (
+                  <img src={media.thumbnail} className='flex mx-auto source-card-media' height='140' width='140' />
+                )}
+              </div>
+            );
+          })}
+        </div>
       </div>
     </Layout>
   );
