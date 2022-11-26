@@ -47,7 +47,12 @@ const LoginButton = (props: LoginButtonProps) => {
       return;
     }
 
-    getProfile()
+    getProfile({
+      email: res.profileObj.email,
+      avatar: res.profileObj.imageUrl,
+      firstName: res.profileObj.givenName,
+      lastName: res.profileObj.familyName,
+    })
       .then(user => {
         setContextState({
           type: ActionTypes.SetUser,
