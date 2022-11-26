@@ -12,6 +12,8 @@ import ListItemText from '@mui/material/ListItemText';
 import Avatar from '@mui/material/Avatar';
 import MonitorHeartIcon from '@mui/icons-material/MonitorHeart';
 import MedicalInformationTwoToneIcon from '@mui/icons-material/MedicalInformationTwoTone';
+import TroubleshootIcon from '@mui/icons-material/Troubleshoot';
+import SquareFootIcon from '@mui/icons-material/SquareFoot';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
@@ -89,7 +91,7 @@ const VideosDetails = () => {
                   <div className='flex flex-row mt-5'>
                     <div className='flex my-auto mr-4'>
                       <Avatar>
-                        <MonitorHeartIcon />
+                        <SquareFootIcon />
                       </Avatar>
                     </div>
                     <ListItemText primary='Area Auricular' secondary={atriumArea + ' cm3'} />
@@ -109,7 +111,7 @@ const VideosDetails = () => {
                   <div className='flex flex-row mt-5'>
                     <div className='flex my-auto mr-4'>
                       <Avatar>
-                        <MonitorHeartIcon />
+                        <TroubleshootIcon color='inherit' />
                       </Avatar>
                     </div>
                     <ListItemText primary='Area Ventricular' secondary={ventricleArea + ' cm3'} />

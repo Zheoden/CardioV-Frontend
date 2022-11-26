@@ -78,7 +78,7 @@ const Header = () => {
           <MenuItem>
             <Link to='/profile' key='profile' className='flex flex-row'>
               <Avatar sx={{ width: 42, height: 42 }} src={contextState.user.avatar} />
-              <span className='my-auto ml-2'>Profile</span>
+              <span className='my-auto ml-2'>Perfil</span>
             </Link>
           </MenuItem>
           <hr />
