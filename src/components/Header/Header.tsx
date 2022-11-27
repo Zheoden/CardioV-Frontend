@@ -31,18 +31,21 @@ const Header = () => {
 
   return (
     <div className='header flex flex-row my-auto bg-sky-500 w-screen p-2 justify-between'>
-      <div className='md:flex hidden flex-row'>
-        <Link to='/' key='echocardiogram'>
-          <img src={Logo} className='logo my-auto' alt='CardioV' />
-        </Link>
+      <div className='flex flex-row md:flex hidden'>
+        <div className='flex flex-row'>
+          <Link to='/' key='echocardiogram'>
+            <img src={Logo} className='logo my-auto' alt='CardioV' />
+          </Link>
+        </div>
+
+        <div className='flex flex-col grow text-white cursor-pointer' onClick={handleReturn}>
+          <div className='ml-3'>
+            <KeyboardReturnIcon />
+          </div>
+          <span className='uppercase font-bold'>Volver</span>
+        </div>
       </div>
 
-      <div className='md:hidden flex flex-col grow text-white' onClick={handleReturn}>
-        <div className='ml-3'>
-          <KeyboardReturnIcon />
-        </div>
-        <span className='uppercase font-bold'>Volver</span>
-      </div>
       <div className='flex md:hidden flex-row grow'>
         <Link to='/' key='echocardiogram'>
           <img src={Logo} className='logo my-auto' alt='CardioV' />

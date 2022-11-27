@@ -11,6 +11,7 @@ export const initialState: State = {
     lastName: '',
     birthdate: '',
     avatar: '',
+    email: '',
   },
 };
 

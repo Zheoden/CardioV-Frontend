@@ -5,8 +5,7 @@ import { updateProfile } from 'src/api/VideoService';
 import { useContextState } from 'src/common/ContextState/ContextState';
 import { ActionTypes } from 'src/common/ContextState/Interfaces';
 import Layout from '../Layout/Layout';
-import { Box, Container, Grid, Typography } from '@mui/material';
-import { Avatar, Card, CardActions, CardContent, Divider, CardHeader } from '@mui/material';
+import { Avatar, Card, CardContent, Divider } from '@mui/material';
 
 const ProfileView = () => {
   const { contextState, setContextState } = useContextState();
@@ -15,6 +14,7 @@ const ProfileView = () => {
     lastName: '',
     birthdate: '',
     avatar: '',
+    email: '',
   });
 
   useEffect(() => {
@@ -43,18 +43,11 @@ const ProfileView = () => {
 
   return (
     <Layout>
-      <div className='flex flex-col w-full mt-8'>
-        {/* <Grid container spacing={3}> */}
-        {/* <Grid item lg={4} md={6} xs={12}> */}
+      <div className='flex flex-row w-full mt-8 mb-1 font-mono'>
         <div className='flex flex-row mx-auto'>
           <Card>
-            <CardContent>
-              <Box
-                sx={{
-                  alignItems: 'center',
-                  display: 'flex',
-                  flexDirection: 'column',
-                }}>
+            <div className='flex flex-col w-full mt-8'>
+              <div className='flex flex-row mx-auto'>
                 <Avatar
                   src={user.avatar}
                   sx={{
@@ -63,30 +56,11 @@ const ProfileView = () => {
                     width: 64,
                   }}
                 />
-                <Typography color='textPrimary' gutterBottom variant='h5'>
-                  {user.firstName} {user.lastName}
-                </Typography>
-              </Box>
-            </CardContent>
-            <Divider />
-            <CardActions>
-              <Button color='primary' fullWidth variant='text'>
-                Subir imagen
-              </Button>
-            </CardActions>
-          </Card>
-        </div>
-        {/* </Grid> */}
-        <div className='flex flex-row mx-auto'>
-          {/* <Grid item lg={8} md={6} xs={12}> */}
-          <Card>
-            <div className='flex flex-col w-full mt-8'>
-              <CardHeader title='Datos' />
+              </div>
+              <h2 className='flex mx-auto text-2xl h1'>Datos</h2>
               <Divider />
               <CardContent>
-                <div className='flex flex-col w-full mt-8'>
-                  {/* <Grid container spacing={3}> */}
-                  {/* <Grid item md={6} xs={12}> */}
+                <div className='flex flex-col w-full'>
                   <div className='flex flex-row mx-auto'>
                     <TextField
                       label='Nombre'
@@ -95,8 +69,6 @@ const ProfileView = () => {
                       onChange={value => handleUpdate('firstName', value.target.value)}
                     />
                   </div>
-                  {/* </Grid> */}
-                  {/* <Grid item md={6} xs={12}> */}
                   <div className='flex flex-row mx-auto'>
                     <TextField
                       label='Apellido'
@@ -105,84 +77,25 @@ const ProfileView = () => {
                       onChange={value => handleUpdate('lastName', value.target.value)}
                     />
                   </div>
-                  {/* </Grid> */}
-                  {/* <Grid item md={6} xs={12}> */}
                   <div className='flex flex-row mx-auto'>
-                    <TextField
-                      label='Fecha de Nacimiento'
-                      variant='standard'
-                      type='date'
-                      value={user.birthdate}
-                      sx={{ width: 200 }}
-                      onChange={value => handleUpdate('birthdate', value.target.value)}
-                    />
+                    <TextField disabled label='Email' variant='standard' value={user.email} sx={{ width: 200 }} />
                   </div>
-                  {/* </Grid> */}
-                  {/* </Grid> */}
                 </div>
               </CardContent>
               <Divider />
-              <Box
-                sx={{
-                  display: 'flex',
-                  justifyContent: 'flex-end',
-                  p: 2,
-                }}>
+              <div className='flex p-2 mx-auto'>
                 <Button
                   variant='outlined'
                   onClick={handleUpdateProfile}
-                  disabled={
-                    contextState.user.firstName === user.firstName &&
-                    contextState.user.lastName === user.lastName &&
-                    contextState.user.birthdate === user.birthdate &&
-                    contextState.user.avatar === user.avatar
-                  }>
+                  disabled={contextState.user.firstName === user.firstName && contextState.user.lastName === user.lastName}>
                   Guardar
                 </Button>
-              </Box>
+              </div>
             </div>
           </Card>
-          {/* </Grid> */}
         </div>
-        {/* </Grid> */}
       </div>
     </Layout>
-    // <Layout>
-    //   <div className='flex flex-col w-full mt-8'>
-    //     <div className='flex flex-row mx-auto'>
-    //       <TextField label='Nombre' variant='standard' value={user.firstName} onChange={value => handleUpdate('firstName', value.target.value)} />
-    //       <div className='ml-8'>
-    //         <TextField label='Apellido' variant='standard' value={user.lastName} onChange={value => handleUpdate('lastName', value.target.value)} />
-    //       </div>
-    //     </div>
-    //     <div className='flex flex-row mt-4 mx-auto'>
-    //       <TextField
-    //         label='Fecha de Nacimiento'
-    //         variant='standard'
-    //         type='date'
-    //         value={user.birthdate}
-    //         sx={{ width: 200 }}
-    //         onChange={value => handleUpdate('birthdate', value.target.value)}
-    //       />
-    //       <div className='ml-8'>
-    //         <TextField label='Avatar' variant='standard' value={user.avatar} onChange={value => handleUpdate('avatar', value.target.value)} />
-    //       </div>
-    //     </div>
-    //     <div className='flex flex-row mt-8 mx-auto'>
-    //       <Button
-    //         variant='outlined'
-    //         onClick={handleUpdateProfile}
-    //         disabled={
-    //           contextState.user.firstName === user.firstName &&
-    //           contextState.user.lastName === user.lastName &&
-    //           contextState.user.birthdate === user.birthdate &&
-    //           contextState.user.avatar === user.avatar
-    //         }>
-    //         Guardar
-    //       </Button>
-    //     </div>
-    //   </div>
-    // </Layout>
   );
 };
 
