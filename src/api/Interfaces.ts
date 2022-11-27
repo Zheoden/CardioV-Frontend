@@ -1,8 +1,9 @@
 export interface Profile {
-  firstName: string;
-  lastName: string;
-  birthdate: string;
-  avatar: string;
+  firstName?: string;
+  lastName?: string;
+  birthdate?: string;
+  email?: string;
+  avatar?: string;
 }
 
 export interface VideosDto {
@@ -38,4 +39,5 @@ export interface VideoRequestBody {
   title: string;
   patology: string;
   description: string;
+  scale?: string;
 }

@@ -18,6 +18,7 @@ const VideoUploadModal = (props: VideoUploadModalProps) => {
     title: '',
     patology: '',
     description: '',
+    scale: '',
   });
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -80,6 +81,13 @@ const VideoUploadModal = (props: VideoUploadModalProps) => {
                   placeholder='Patologia'
                   value={videoUpload.patology}
                   onChange={e => setVideoUpload({ ...videoUpload, patology: e.target.value })}
+                  className='flex w-full p-2 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 mt-2'
+                />
+                <input
+                  type='text'
+                  placeholder='Escala (Candidad de pixeles que reprecentan 1 centimetro)'
+                  value={videoUpload.scale}
+                  onChange={e => setVideoUpload({ ...videoUpload, scale: e.target.value })}
                   className='flex w-full p-2 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 mt-2'
                 />
                 <textarea

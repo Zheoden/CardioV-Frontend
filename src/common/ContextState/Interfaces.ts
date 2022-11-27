@@ -11,6 +11,7 @@ export interface UserState {
   lastName: string;
   birthdate: string;
   avatar: string;
+  email: string;
 }
 
 export enum ActionTypes {

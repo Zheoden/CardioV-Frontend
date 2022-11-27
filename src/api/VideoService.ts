@@ -1,7 +1,7 @@
 import { Profile, VideoRequestBody, VideosDetailsDto, VideosDto } from './Interfaces';
 import client from './VideoClient';
 
-export async function getProfile(): Promise<Profile> {
+export async function getProfile(profile?: Profile): Promise<Profile> {
   return client
     .get('/user/me')
     .then(response => {
@@ -9,15 +9,15 @@ export async function getProfile(): Promise<Profile> {
     })
     .catch(err => {
       if (err.response.data.message === 'USER_NOT_FOUND') {
-        return registerProfile();
+        return registerProfile(profile);
       }
       throw err;
     });
 }
 
-export async function registerProfile(): Promise<Profile> {
+export async function registerProfile(profile?: Profile): Promise<Profile> {
   return client
-    .post('/user/register')
+    .post('/user/register', profile)
     .then(response => {
       return response.data;
     })
@@ -67,6 +67,7 @@ export async function uploadVideo(body: VideoRequestBody): Promise<void> {
   formData.append('description', body.description);
   formData.append('title', body.title);
   formData.append('patology', body.patology);
+  formData.append('scale', String(body.scale ?? 1));
   return client
     .post(`/media`, formData)
     .then(response => {

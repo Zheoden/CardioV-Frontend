@@ -16,7 +16,7 @@ export interface CustomRoute {
 export const CustomRoutes: CustomRoute[] = [
   {
     path: '/',
-    component: Home,
+    component: Videos,
     shouldDisplay: false,
   },
   {
@@ -28,16 +28,16 @@ export const CustomRoutes: CustomRoute[] = [
     key: 'profile',
   },
   {
-    path: '/videos',
+    path: '/',
     component: Videos,
     shouldDisplay: true,
-    displayName: 'Videos',
+    displayName: 'Ecocardiogramas',
     description:
       'Esta vista te permite subir nuevos videos o imagenes para ser procesados. Tambien te permite ver informacion de videos e imagenes subidos previamente.',
-    key: 'video',
+    key: 'echocardiogram',
   },
   {
-    path: '/videos/:id',
+    path: '/:id',
     component: VideosDetails,
     shouldDisplay: false,
   },

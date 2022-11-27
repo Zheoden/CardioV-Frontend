@@ -1,34 +1,28 @@
 import { useState } from 'react';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
 import Avatar from '@mui/material/Avatar';
 import MenuItem from '@mui/material/MenuItem';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Logo from '../../assets/Logo-Oscuro.png';
-
+import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 import { Logout } from '@mui/icons-material';
 import LogoutButton from '../Session/LogoutButton';
-
 import { CustomRoutes } from '../../common/Constants';
+import { useContextState } from 'src/common/ContextState/ContextState';
 
 import './Header.scss';
-import { useContextState } from 'src/common/ContextState/ContextState';
 
 const Header = () => {
   const { contextState, setContextState } = useContextState();
-  const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
+  const navigate = useNavigate();
 
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElNav(event.currentTarget);
+  const handleReturn = () => {
+    navigate(-1);
   };
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
   };
 
   const handleCloseUserMenu = () => {
@@ -37,60 +31,31 @@ const Header = () => {
 
   return (
     <div className='header flex flex-row my-auto bg-sky-500 w-screen p-2 justify-between'>
-      <div className='md:flex hidden flex-row'>
-        <Link to='/' key='home'>
-          <img src={Logo} className='logo my-auto' alt='CardioV' />
-        </Link>
+      <div className='flex flex-row md:flex hidden'>
+        <div className='flex flex-row'>
+          <Link to='/' key='echocardiogram'>
+            <img src={Logo} className='logo my-auto' alt='CardioV' />
+          </Link>
+        </div>
+
+        <div className='flex flex-col grow text-white cursor-pointer' onClick={handleReturn}>
+          <div className='ml-3'>
+            <KeyboardReturnIcon />
+          </div>
+          <span className='uppercase font-bold'>Volver</span>
+        </div>
       </div>
 
       <div className='flex md:hidden flex-row grow'>
-        <IconButton
-          size='large'
-          aria-label='account of current user'
-          aria-controls='menu-appbar'
-          aria-haspopup='true'
-          onClick={handleOpenNavMenu}
-          color='inherit'>
-          <MenuIcon />
-        </IconButton>
-        <Menu
-          id='menu-appbar'
-          anchorEl={anchorElNav}
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'left',
-          }}
-          keepMounted
-          transformOrigin={{
-            vertical: 'top',
-            horizontal: 'left',
-          }}
-          open={Boolean(anchorElNav)}
-          onClose={handleCloseNavMenu}
-          sx={{
-            display: { xs: 'block', md: 'none' },
-          }}>
-          {CustomRoutes.filter(route => route.shouldDisplay).map(page => (
-            <Link to={page.path} key={page.displayName}>
-              <div className='flex flex-row'>
-                <span className='my-auto text-xl text-center px-2'> {page.displayName} </span>
-              </div>
-            </Link>
-          ))}
-        </Menu>
-      </div>
-      <div className='flex md:hidden flex-row grow'>
-        <Link to='/' key='home'>
+        <Link to='/' key='echocardiogram'>
           <img src={Logo} className='logo my-auto' alt='CardioV' />
         </Link>
       </div>
       <div className='md:flex hidden flex-row my-auto'>
         {CustomRoutes.filter(route => route.shouldDisplay).map(page => (
-          <Link to={page.path} key={page.displayName}>
-            <div className='flex flex-row'>
-              <span className='my-auto ml-3 text-xl font-bold text-white'> {page.displayName} </span>
-            </div>
-          </Link>
+          <div className='flex flex-row text-white uppercase font-bold font-mono' key={page.displayName}>
+            <span className={`my-auto text-xl text-center px-2 ${page.path === window.location.pathname ? '' : 'hidden'}`}>{page.displayName}</span>
+          </div>
         ))}
       </div>
 
@@ -116,7 +81,7 @@ const Header = () => {
           <MenuItem>
             <Link to='/profile' key='profile' className='flex flex-row'>
               <Avatar sx={{ width: 42, height: 42 }} src={contextState.user.avatar} />
-              <span className='my-auto ml-2'>Profile</span>
+              <span className='my-auto ml-2'>Perfil</span>
             </Link>
           </MenuItem>
           <hr />

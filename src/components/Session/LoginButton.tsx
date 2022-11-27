@@ -6,6 +6,7 @@ import { ActionTypes } from 'src/common/ContextState/Interfaces';
 import { googleClientId, refreshToken } from 'src/common/GoogleUtils';
 import { useNavigate } from 'react-router-dom';
 import { getProfile } from 'src/api/VideoService';
+import GoogleIcon from '@mui/icons-material/Google';
 
 interface LoginButtonProps {
   className?: string;
@@ -46,11 +47,16 @@ const LoginButton = (props: LoginButtonProps) => {
       return;
     }
 
-    getProfile()
+    getProfile({
+      email: res.profileObj.email,
+      avatar: res.profileObj.imageUrl,
+      firstName: res.profileObj.givenName,
+      lastName: res.profileObj.familyName,
+    })
       .then(user => {
         setContextState({
           type: ActionTypes.SetUser,
-          value: { firstName: user.firstName, lastName: user.lastName, birthdate: user.birthdate, avatar: user.avatar },
+          value: { firstName: user.firstName, lastName: user.lastName, birthdate: user.birthdate, avatar: user.avatar, email: user.email },
         });
         navigate(contextState.redirectUrl || '/');
       })
@@ -64,21 +70,24 @@ const LoginButton = (props: LoginButtonProps) => {
   };
 
   return (
-    <div>
-      <GoogleLogin
-        clientId={googleClientId}
-        buttonText='Log in with Google'
-        render={renderProps => (
-          <button onClick={renderProps.onClick} disabled={renderProps.disabled} className={className}>
-            {text}
-          </button>
-        )}
-        onSuccess={onSuccess}
-        onFailure={onFailure}
-        cookiePolicy={'single_host_origin'}
-        isSignedIn
-      />
-    </div>
+    <GoogleLogin
+      clientId={googleClientId}
+      buttonText='Log in with Google'
+      render={renderProps => (
+        <div onClick={renderProps.onClick} className='flex cursor-pointer w-full'>
+          <div className='mx-auto'>
+            <GoogleIcon />
+            <button disabled={renderProps.disabled} className='ml-3'>
+              {text}
+            </button>
+          </div>
+        </div>
+      )}
+      onSuccess={onSuccess}
+      onFailure={onFailure}
+      cookiePolicy={'single_host_origin'}
+      isSignedIn
+    />
   );
 };
 

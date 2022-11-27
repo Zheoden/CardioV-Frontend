@@ -5,6 +5,7 @@ import { updateProfile } from 'src/api/VideoService';
 import { useContextState } from 'src/common/ContextState/ContextState';
 import { ActionTypes } from 'src/common/ContextState/Interfaces';
 import Layout from '../Layout/Layout';
+import { Avatar, Card, CardContent, Divider } from '@mui/material';
 
 const ProfileView = () => {
   const { contextState, setContextState } = useContextState();
@@ -13,6 +14,7 @@ const ProfileView = () => {
     lastName: '',
     birthdate: '',
     avatar: '',
+    email: '',
   });
 
   useEffect(() => {
@@ -41,38 +43,56 @@ const ProfileView = () => {
 
   return (
     <Layout>
-      <div className='flex flex-col w-full mt-8'>
+      <div className='flex flex-row w-full mt-8 mb-1 font-mono'>
         <div className='flex flex-row mx-auto'>
-          <TextField label='Nombre' variant='standard' value={user.firstName} onChange={value => handleUpdate('firstName', value.target.value)} />
-          <div className='ml-8'>
-            <TextField label='Apellido' variant='standard' value={user.lastName} onChange={value => handleUpdate('lastName', value.target.value)} />
-          </div>
-        </div>
-        <div className='flex flex-row mt-4 mx-auto'>
-          <TextField
-            label='Fecha de Nacimiento'
-            variant='standard'
-            type='date'
-            value={user.birthdate}
-            sx={{ width: 200 }}
-            onChange={value => handleUpdate('birthdate', value.target.value)}
-          />
-          <div className='ml-8'>
-            <TextField label='Avatar' variant='standard' value={user.avatar} onChange={value => handleUpdate('avatar', value.target.value)} />
-          </div>
-        </div>
-        <div className='flex flex-row mt-8 mx-auto'>
-          <Button
-            variant='outlined'
-            onClick={handleUpdateProfile}
-            disabled={
-              contextState.user.firstName === user.firstName &&
-              contextState.user.lastName === user.lastName &&
-              contextState.user.birthdate === user.birthdate &&
-              contextState.user.avatar === user.avatar
-            }>
-            Guardar
-          </Button>
+          <Card>
+            <div className='flex flex-col w-full mt-8'>
+              <div className='flex flex-row mx-auto'>
+                <Avatar
+                  src={user.avatar}
+                  sx={{
+                    height: 64,
+                    mb: 2,
+                    width: 64,
+                  }}
+                />
+              </div>
+              <h2 className='flex mx-auto text-2xl h1'>Datos</h2>
+              <Divider />
+              <CardContent>
+                <div className='flex flex-col w-full'>
+                  <div className='flex flex-row mx-auto'>
+                    <TextField
+                      label='Nombre'
+                      variant='standard'
+                      value={user.firstName}
+                      onChange={value => handleUpdate('firstName', value.target.value)}
+                    />
+                  </div>
+                  <div className='flex flex-row mx-auto'>
+                    <TextField
+                      label='Apellido'
+                      variant='standard'
+                      value={user.lastName}
+                      onChange={value => handleUpdate('lastName', value.target.value)}
+                    />
+                  </div>
+                  <div className='flex flex-row mx-auto'>
+                    <TextField disabled label='Email' variant='standard' value={user.email} sx={{ width: 200 }} />
+                  </div>
+                </div>
+              </CardContent>
+              <Divider />
+              <div className='flex p-2 mx-auto'>
+                <Button
+                  variant='outlined'
+                  onClick={handleUpdateProfile}
+                  disabled={contextState.user.firstName === user.firstName && contextState.user.lastName === user.lastName}>
+                  Guardar
+                </Button>
+              </div>
+            </div>
+          </Card>
         </div>
       </div>
     </Layout>
