@@ -39,4 +39,5 @@ export interface VideoRequestBody {
   title: string;
   patology: string;
   description: string;
+  scale?: string;
 }
