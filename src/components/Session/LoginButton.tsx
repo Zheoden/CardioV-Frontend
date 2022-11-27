@@ -56,7 +56,7 @@ const LoginButton = (props: LoginButtonProps) => {
       .then(user => {
         setContextState({
           type: ActionTypes.SetUser,
-          value: { firstName: user.firstName, lastName: user.lastName, birthdate: user.birthdate, avatar: user.avatar },
+          value: { firstName: user.firstName, lastName: user.lastName, birthdate: user.birthdate, avatar: user.avatar, email: user.email },
         });
         navigate(contextState.redirectUrl || '/');
       })
