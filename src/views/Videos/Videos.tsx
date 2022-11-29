@@ -63,7 +63,7 @@ const Videos = () => {
             <VideoUploadModal handleModalState={handleModalState} openModal={openModal} />
           </div>
         </div>
-        <div className='flex flex-wrap'>
+        <div className='flex flex-wrap mx-auto'>
           {filteredVideos.length > 0 ? (
             filteredVideos.map(video => <VideoCard video={video} handleDeleteRequest={handleDeleteRequest} key={video.id} />)
           ) : (

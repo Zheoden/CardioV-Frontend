@@ -24,8 +24,9 @@ const VideosDetails = () => {
   const [videoExtension, setVideoExtension] = useState<string>('');
   const [ventriclePerimeter, setventriclePerimeter] = useState<number>(0);
   const [muscleThickness, setMuscleThickness] = useState<number>(0);
-  const [ventricleArea, setVentricleArea] = useState<number>(0);
+  const [ventricleArea, setVentricleArea] = useState<number[]>([]);
   const [ventricleVolume, setVentricleVolume] = useState<number[]>([]);
+  const [ejectionFraction, setEjectionFraction] = useState<number>(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -43,6 +44,7 @@ const VideosDetails = () => {
     const muscle = videoDetails?.parameters.filter(param => param.field === 'MUSCLE_THICKNESS');
     const ventricleArea = videoDetails?.parameters.filter(param => param.field === 'VENTRICLE_AREA');
     const ventricleVolume = videoDetails?.parameters.filter(param => param.field === 'VENTRICLE_VOLUME');
+    const ejectionFraction = videoDetails?.parameters.filter(param => param.field === 'EJECTION_FRACTION');
 
     if (ventriclePerimeter && ventriclePerimeter.length > 0) {
       setventriclePerimeter(
@@ -54,10 +56,12 @@ const VideosDetails = () => {
       setMuscleThickness(muscle.map(muscle => Number(muscle.value)).reduce((a, b) => a + b) / muscle.length);
     }
 
-    if (ventricleArea && ventricleArea.length > 0) {
+    /*     if (ventricleArea && ventricleArea.length > 0) {
       setVentricleArea(ventricleArea.map(ventricleArea => Number(ventricleArea.value)).reduce((a, b) => a + b) / ventricleArea.length);
-    }
+    } */
 
+    setVentricleArea(ventricleArea?.map(ventricleArea => Number(ventricleArea.value)) ?? []);
+    setEjectionFraction(ejectionFraction?.map(volume => Number(volume.value))[0] ?? 0);
     setVentricleVolume(ventricleVolume?.map(volume => Number(volume.value)) ?? []);
   }, [videoDetails]);
 
@@ -86,7 +90,7 @@ const VideosDetails = () => {
                           <SquareFootIcon />
                         </Avatar>
                       </div>
-                      <ListItemText primary='Perimetro Ventricular' secondary={ventriclePerimeter + ' cm3'} />
+                      <ListItemText primary='Perimetro Ventricular' secondary={ventriclePerimeter.toFixed(2) + ' cm'} />
                     </div>
                   )}
                   {!!muscleThickness && (
@@ -96,7 +100,7 @@ const VideosDetails = () => {
                           <MonitorHeartIcon />
                         </Avatar>
                       </div>
-                      <ListItemText primary='Espesor de las paredes' secondary={muscleThickness + ' cm3'} />
+                      <ListItemText primary='Espesor de las paredes' secondary={muscleThickness.toFixed(2) + ' cm'} />
                     </div>
                   )}
                   {!!ventricleArea && (
@@ -106,7 +110,10 @@ const VideosDetails = () => {
                           <TroubleshootIcon color='inherit' />
                         </Avatar>
                       </div>
-                      <ListItemText primary='Area Ventricular' secondary={ventricleArea + ' cm3'} />
+                      <ListItemText
+                        primary='Promedio del Area Ventricular'
+                        secondary={ventricleArea.length > 0 && (ventricleArea.reduce((a, b) => a + b) / ventricleArea.length).toFixed(2) + ' cm2'}
+                      />
                     </div>
                   )}
                   {ventricleVolume.length === 1 && (
@@ -116,7 +123,17 @@ const VideosDetails = () => {
                           <MedicalInformationTwoToneIcon />
                         </Avatar>
                       </div>
-                      <ListItemText primary='Volumen Ventricular' secondary={ventricleVolume[0] + ' cm3'} />
+                      <ListItemText primary='Volumen Ventricular' secondary={ventricleVolume[0].toFixed(2) + ' cm3'} />
+                    </div>
+                  )}
+                  {ejectionFraction !== 0 && (
+                    <div className='flex flex-row mt-5'>
+                      <div className='flex my-auto mr-4'>
+                        <Avatar>
+                          <MedicalInformationTwoToneIcon />
+                        </Avatar>
+                      </div>
+                      <ListItemText primary='Fraccion de Eyeccion' secondary={ejectionFraction.toFixed(2) + ' %'} />
                     </div>
                   )}
                 </div>
@@ -167,9 +184,9 @@ const VideosDetails = () => {
                   <AccordionDetails>
                     <div className='flex flex-col ml-4'>
                       {mediaExtension === 'mp4' || mediaExtension === 'avi' ? (
-                        <video className='source-card-media mx-auto' src={media.thumbnail} controls />
+                        <video className='h-auto	w-auto mx-auto' src={media.thumbnail} controls />
                       ) : (
-                        <img src={media.thumbnail} className='flex mx-auto source-card-media' height='140' width='140' />
+                        <img src={media.thumbnail} className='flex mx-auto h-auto	w-auto' height='140' width='140' />
                       )}
                     </div>
                   </AccordionDetails>
@@ -178,6 +195,36 @@ const VideosDetails = () => {
             );
           })}
         </div>
+
+        {ventricleArea.length > 1 && (
+          <div className='flex flex-col w-6/12 mx-auto mb-1'>
+            <Accordion>
+              <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls='panel1a-content' id='panel1a-header'>
+                <Typography>Distribucion del area Ventricular</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <div className='flex flex-col mx-auto'>
+                  <Line
+                    options={{
+                      responsive: true,
+                    }}
+                    data={{
+                      labels: ventricleArea.map((_, index) => String(index)),
+                      datasets: [
+                        {
+                          label: 'Area Ventricular',
+                          data: ventricleArea,
+                          borderColor: 'rgb(255, 99, 132)',
+                          backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                        },
+                      ],
+                    }}
+                  />
+                </div>
+              </AccordionDetails>
+            </Accordion>
+          </div>
+        )}
       </div>
     </Layout>
   );
