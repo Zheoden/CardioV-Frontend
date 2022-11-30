@@ -56,10 +56,6 @@ const VideosDetails = () => {
       setMuscleThickness(muscle.map(muscle => Number(muscle.value)).reduce((a, b) => a + b) / muscle.length);
     }
 
-    /*     if (ventricleArea && ventricleArea.length > 0) {
-      setVentricleArea(ventricleArea.map(ventricleArea => Number(ventricleArea.value)).reduce((a, b) => a + b) / ventricleArea.length);
-    } */
-
     setVentricleArea(ventricleArea?.map(ventricleArea => Number(ventricleArea.value)) ?? []);
     setEjectionFraction(ejectionFraction?.map(volume => Number(volume.value))[0] ?? 0);
     setVentricleVolume(ventricleVolume?.map(volume => Number(volume.value)) ?? []);

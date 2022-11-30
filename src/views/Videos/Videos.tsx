@@ -7,6 +7,7 @@ import Layout from '../Layout/Layout';
 import VideoCard from 'src/components/VideoCard/VideoCard';
 import VideoUploadModal from 'src/components/VideoUploadModal/VideoUploadModal';
 import './Videos.scss';
+import EchoStats from 'src/components/EchoStats/EchoStats';
 
 const Videos = () => {
   const [videos, setVideos] = useState<VideosDto[]>([]);
@@ -15,8 +16,12 @@ const Videos = () => {
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [deleteRequest, setDeleteRequest] = useState<boolean>(false);
 
+  const [currentTab, setCurrentTag] = useState<string>('echo');
+
   const handleModalState = () => setOpenModal(!openModal);
   const handleDeleteRequest = () => setDeleteRequest(!deleteRequest);
+
+  const changeTag = (tab: string) => setCurrentTag(tab);
 
   useEffect(() => {
     getVideos(buscador)
@@ -43,33 +48,61 @@ const Videos = () => {
     <Layout>
       <div className='flex flex-col lg:ml-20 sm:ml-8 ml-4'>
         <div className='flex flex-row justify-between mt-4'>
-          <div className='flex relative my-auto'>
-            <div className='flex absolute inset-y-0 left-0 items-center pl-1 pointer-events-none'>
-              <SearchIcon className='w-5 h-5 text-gray-500' />
+          <div className='flex flex-row'>
+            <div className='flex relative my-auto'>
+              <div className='flex absolute inset-y-0 left-0 items-center pl-1 pointer-events-none'>
+                <SearchIcon className='w-5 h-5 text-gray-500' />
+              </div>
+              <input
+                type='search'
+                placeholder='Buscador'
+                value={buscador}
+                onChange={e => setBuscador(e.target.value)}
+                disabled={currentTab === 'stats'}
+                className='flex w-full p-3 pl-8 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500'
+              />
             </div>
-            <input
-              type='search'
-              placeholder='Buscador'
-              value={buscador}
-              onChange={e => setBuscador(e.target.value)}
-              className='flex w-full p-3 pl-8 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500'
-            />
+
+            <ul className='flex flex-wrap text-sm font-medium text-center text-gray-500 border-b border-gray-2000 ml-4'>
+              <li className='mr-2'>
+                <span
+                  onClick={() => changeTag('echo')}
+                  className={`inline-block p-4 rounded-t-lg cursor-pointer ${
+                    currentTab === 'echo' ? 'text-blue-600 bg-gray-100 active' : 'hover:text-gray-600 hover:bg-gray-50'
+                  }`}>
+                  Ecocardiogramas
+                </span>
+              </li>
+              <li className='mr-2'>
+                <span
+                  onClick={() => changeTag('stats')}
+                  className={`inline-block p-4 rounded-t-lg cursor-pointer ${
+                    currentTab === 'stats' ? 'text-blue-600 bg-gray-100 active' : 'hover:text-gray-600 hover:bg-gray-50'
+                  }`}>
+                  Estadisticas
+                </span>
+              </li>
+            </ul>
           </div>
 
           <div className='lg:mr-8 mx-4 my-auto'>
-            <Button variant='outlined' onClick={handleModalState}>
-              Subir Video
+            <Button variant='outlined' onClick={handleModalState} disabled={currentTab === 'stats'}>
+              Subir Archivo
             </Button>
             <VideoUploadModal handleModalState={handleModalState} openModal={openModal} />
           </div>
         </div>
-        <div className='flex flex-wrap mx-auto'>
-          {filteredVideos.length > 0 ? (
-            filteredVideos.map(video => <VideoCard video={video} handleDeleteRequest={handleDeleteRequest} key={video.id} />)
-          ) : (
-            <div className='flex mx-auto'> No se encontraron videos que coincidan con su busqueda</div>
-          )}
-        </div>
+        {currentTab === 'echo' && (
+          <div className='flex flex-wrap mx-auto'>
+            {filteredVideos.length > 0 ? (
+              filteredVideos.map(video => <VideoCard video={video} handleDeleteRequest={handleDeleteRequest} key={video.id} />)
+            ) : (
+              <div className='flex mx-auto'> No se encontraron videos que coincidan con su busqueda</div>
+            )}
+          </div>
+        )}
+
+        {currentTab === 'stats' && <EchoStats />}
       </div>
     </Layout>
   );

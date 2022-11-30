@@ -1,4 +1,4 @@
-import { Profile, VideoRequestBody, VideosDetailsDto, VideosDto } from './Interfaces';
+import { Metrics, Profile, VideoRequestBody, VideosDetailsDto, VideosDto } from './Interfaces';
 import client from './VideoClient';
 
 export async function getProfile(profile?: Profile): Promise<Profile> {
@@ -59,6 +59,18 @@ export async function getVideosById(id: string): Promise<VideosDetailsDto> {
     });
 }
 
+export async function getStats(): Promise<Metrics> {
+  return client
+    .get(`/media/stats`)
+    .then(response => {
+      console.log(response.data);
+      return response.data;
+    })
+    .catch(err => {
+      throw err;
+    });
+}
+
 export async function uploadVideo(body: VideoRequestBody): Promise<void> {
   const formData = new FormData();
   if (body.currentFile) {
@@ -68,6 +80,8 @@ export async function uploadVideo(body: VideoRequestBody): Promise<void> {
   formData.append('title', body.title);
   formData.append('patology', body.patology);
   formData.append('scale', String(body.scale ?? 1));
+  formData.append('age', String(body.age));
+  formData.append('gender', String(body.gender));
   return client
     .post(`/media`, formData)
     .then(response => {

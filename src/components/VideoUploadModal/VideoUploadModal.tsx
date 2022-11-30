@@ -19,6 +19,8 @@ const VideoUploadModal = (props: VideoUploadModalProps) => {
     patology: '',
     description: '',
     scale: '',
+    age: NaN,
+    gender: '',
   });
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -84,12 +86,32 @@ const VideoUploadModal = (props: VideoUploadModalProps) => {
                   className='flex w-full p-2 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 mt-2'
                 />
                 <input
-                  type='text'
+                  type='number'
                   placeholder='Escala (Candidad de pixeles que reprecentan 1 centimetro)'
                   value={videoUpload.scale}
                   onChange={e => setVideoUpload({ ...videoUpload, scale: e.target.value })}
                   className='flex w-full p-2 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 mt-2'
                 />
+                <div className='flex flex-row mt-2'>
+                  <input
+                    type='number'
+                    placeholder='Edad'
+                    value={videoUpload.age}
+                    onChange={e => setVideoUpload({ ...videoUpload, age: Number(e.target.value) })}
+                    className='flex grow p-2 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 mr-3'
+                  />
+                  <select
+                    name='gender'
+                    className='flex grow p-2 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300'
+                    value={videoUpload.gender}
+                    onChange={e => setVideoUpload({ ...videoUpload, gender: e.target.value })}>
+                    <option value='' disabled selected>
+                      Seleccione
+                    </option>
+                    <option value='MALE'>Masculino</option>
+                    <option value='FEMALE'>Femenino</option>
+                  </select>
+                </div>
                 <textarea
                   placeholder='Descripcion'
                   value={videoUpload.description}
@@ -120,7 +142,15 @@ const VideoUploadModal = (props: VideoUploadModalProps) => {
                   <Button
                     variant='outlined'
                     onClick={handleUploadVideo}
-                    disabled={!videoUpload.currentFile || !videoUpload.title || !videoUpload.description || !videoUpload.patology}>
+                    disabled={
+                      !videoUpload.currentFile ||
+                      !videoUpload.title ||
+                      !videoUpload.description ||
+                      !videoUpload.patology ||
+                      !videoUpload.age ||
+                      !videoUpload.scale ||
+                      !videoUpload.gender
+                    }>
                     Subir
                   </Button>
                 </div>
@@ -128,7 +158,15 @@ const VideoUploadModal = (props: VideoUploadModalProps) => {
                   <Button
                     variant='outlined'
                     onClick={handleClose}
-                    disabled={!videoUpload.currentFile || !videoUpload.title || !videoUpload.description || !videoUpload.patology}>
+                    disabled={
+                      !videoUpload.currentFile ||
+                      !videoUpload.title ||
+                      !videoUpload.description ||
+                      !videoUpload.patology ||
+                      !videoUpload.age ||
+                      !videoUpload.scale ||
+                      !videoUpload.gender
+                    }>
                     Cancelar
                   </Button>
                 </div>
