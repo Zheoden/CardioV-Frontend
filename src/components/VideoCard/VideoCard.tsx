@@ -23,9 +23,9 @@ const VideoCard = (props: VideoCardProps) => {
       ) : (
         <Card sx={{ maxWidth: 275 }}>
           {videoType === 'mp4' || videoType === 'avi' ? (
-            <video className='source-card' src={video.thumbnail} controls />
+            <video className='source-card-media' src={video.thumbnail} controls />
           ) : (
-            <img src={video.thumbnail} className='flex mx-auto source-card' height='140' width='140' />
+            <img src={video.thumbnail} className='flex mx-auto source-card-media' height='140' width='140' />
           )}
           <Link to={`${video.id}`}>
             <CardContent>

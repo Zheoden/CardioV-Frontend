@@ -64,21 +64,23 @@ const ProfileView = () => {
                   <div className='flex flex-row mx-auto'>
                     <TextField
                       label='Nombre'
-                      variant='standard'
+                      variant='outlined'
                       value={user.firstName}
+                      margin='normal'
                       onChange={value => handleUpdate('firstName', value.target.value)}
                     />
                   </div>
                   <div className='flex flex-row mx-auto'>
                     <TextField
                       label='Apellido'
-                      variant='standard'
+                      variant='outlined'
                       value={user.lastName}
+                      margin='normal'
                       onChange={value => handleUpdate('lastName', value.target.value)}
                     />
                   </div>
                   <div className='flex flex-row mx-auto'>
-                    <TextField disabled label='Email' variant='standard' value={user.email} sx={{ width: 200 }} />
+                    <TextField disabled label='Email' variant='outlined' margin='normal' value={user.email} />
                   </div>
                 </div>
               </CardContent>
