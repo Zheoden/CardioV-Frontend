@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Modal, Button } from '@mui/material';
+import { Modal, Button, TextField, InputLabel, MenuItem, Select, FormControl } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import UploadIcon from '@mui/icons-material/Upload';
 import { uploadVideo } from 'src/api/VideoService';
@@ -70,56 +70,65 @@ const VideoUploadModal = (props: VideoUploadModalProps) => {
             <Spinner show />
           ) : (
             <>
-              <div className='flex flex-col w-full mt-8'>
-                <input
+              <div className='flex flex-col w-full'>
+                <TextField
                   type='text'
-                  placeholder='Paciente'
+                  variant='outlined'
+                  label='Paciente'
+                  margin='normal'
                   value={videoUpload.title}
                   onChange={e => setVideoUpload({ ...videoUpload, title: e.target.value })}
-                  className='flex w-full p-2 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300'
                 />
-                <input
+                <TextField
                   type='text'
-                  placeholder='Patologia'
+                  variant='outlined'
+                  label='Patologia'
+                  margin='normal'
                   value={videoUpload.patology}
                   onChange={e => setVideoUpload({ ...videoUpload, patology: e.target.value })}
-                  className='flex w-full p-2 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 mt-2'
                 />
-                <input
+                <TextField
                   type='number'
-                  placeholder='Escala (Candidad de pixeles que reprecentan 1 centimetro)'
+                  variant='outlined'
+                  label='Escala (Candidad de pixeles que reprecentan 1 centimetro)'
                   value={videoUpload.scale}
+                  margin='normal'
                   onChange={e => setVideoUpload({ ...videoUpload, scale: e.target.value })}
-                  className='flex w-full p-2 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 mt-2'
                 />
                 <div className='flex flex-row mt-2'>
-                  <input
+                  <TextField
                     type='number'
-                    placeholder='Edad'
+                    variant='outlined'
+                    label='Edad'
                     value={videoUpload.age}
                     onChange={e => setVideoUpload({ ...videoUpload, age: Number(e.target.value) })}
-                    className='flex grow p-2 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 mr-3'
                   />
-                  <select
-                    name='gender'
-                    className='flex grow p-2 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300'
-                    value={videoUpload.gender}
-                    onChange={e => setVideoUpload({ ...videoUpload, gender: e.target.value })}>
-                    <option value='' disabled selected>
-                      Seleccione
-                    </option>
-                    <option value='MALE'>Masculino</option>
-                    <option value='FEMALE'>Femenino</option>
-                  </select>
+                  <div className='w-full ml-3'>
+                    <FormControl fullWidth>
+                      <InputLabel id='demo-simple-select-label'>Sexo</InputLabel>
+                      <Select
+                        labelId='demo-simple-select-label'
+                        id='demo-simple-select'
+                        value={videoUpload.gender}
+                        label='Sexo'
+                        onChange={e => setVideoUpload({ ...videoUpload, gender: e.target.value })}>
+                        <MenuItem value='MALE'>Masculino</MenuItem>
+                        <MenuItem value='FEMALE'>Femenino</MenuItem>
+                      </Select>
+                    </FormControl>
+                  </div>
                 </div>
-                <textarea
-                  placeholder='Descripcion'
+                <TextField
+                  label='Descripcion'
+                  variant='outlined'
                   value={videoUpload.description}
+                  margin='normal'
+                  multiline={true}
+                  rows={3}
                   onChange={e => setVideoUpload({ ...videoUpload, description: e.target.value })}
-                  className='flex w-full p-2 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 mt-2'
                 />
               </div>
-              <div className='w-full mt-8'>
+              <div className='w-full mt-2'>
                 {videoUpload.currentFile ? (
                   <div className='flex flex-row'>
                     <span>{videoUpload.currentFile.name}</span>
@@ -131,7 +140,7 @@ const VideoUploadModal = (props: VideoUploadModalProps) => {
                   <label className='flex justify-center w-full h-32 px-4 transition bg-white border-2 border-gray-300 border-dashed rounded-md appearance-none cursor-pointer hover:border-gray-400 focus:outline-none'>
                     <span className='flex items-center space-x-2'>
                       <UploadIcon />
-                      <span className='font-medium text-gray-600'>Arrastra un archivo para subirlo, o Buscalo</span>
+                      <span className='font-medium text-gray-600'>Haga clic para subir un archivo</span>
                     </span>
                     <input type='file' className='hidden' accept='.jpg, .jpeg, .png, .mp4, .avi' onChange={handleVideoSelecction} />
                   </label>

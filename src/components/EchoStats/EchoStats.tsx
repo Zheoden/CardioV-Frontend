@@ -58,9 +58,9 @@ const EchoStats = () => {
                 <div className='flex flex-row mt-5 mr-3' key={key.toString()}>
                   <div className='flex my-auto mr-4'>
                     <Avatar>
-                      <FormatShapesIcon color='inherit' />
-                      <SquareFootIcon color='inherit' />
-                      <ViewInArIcon color='inherit' />
+                      {currentTab === 'area' && <FormatShapesIcon color='inherit' />}
+                      {currentTab === 'walls' && <SquareFootIcon color='inherit' />}
+                      {currentTab === 'volume' && <ViewInArIcon color='inherit' />}
                     </Avatar>
                   </div>
                   <ListItemText primary={getFriendlyMetricName(key[0])} secondary={key[1]} />

@@ -97,7 +97,7 @@ const Videos = () => {
             {filteredVideos.length > 0 ? (
               filteredVideos.map(video => <VideoCard video={video} handleDeleteRequest={handleDeleteRequest} key={video.id} />)
             ) : (
-              <div className='flex mx-auto'> No se encontraron videos que coincidan con su busqueda</div>
+              <div className='flex mx-auto'> No se encontraron videos</div>
             )}
           </div>
         )}
