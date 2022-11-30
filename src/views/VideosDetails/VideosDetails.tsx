@@ -96,7 +96,7 @@ const VideosDetails = () => {
                           <MonitorHeartIcon />
                         </Avatar>
                       </div>
-                      <ListItemText primary='Espesor de las paredes' secondary={muscleThickness.toFixed(2) + ' cm'} />
+                      <ListItemText primary='Espesor de las Paredes' secondary={muscleThickness.toFixed(2) + ' cm'} />
                     </div>
                   )}
                   {!!ventricleArea && (
@@ -107,7 +107,7 @@ const VideosDetails = () => {
                         </Avatar>
                       </div>
                       <ListItemText
-                        primary='Promedio del Area Ventricular'
+                        primary='Promedio del Área Ventricular'
                         secondary={ventricleArea.length > 0 && (ventricleArea.reduce((a, b) => a + b) / ventricleArea.length).toFixed(2) + ' cm2'}
                       />
                     </div>
@@ -129,7 +129,7 @@ const VideosDetails = () => {
                           <MedicalInformationTwoToneIcon />
                         </Avatar>
                       </div>
-                      <ListItemText primary='Fraccion de Eyeccion' secondary={ejectionFraction.toFixed(2) + ' %'} />
+                      <ListItemText primary='Fracción de Eyección' secondary={ejectionFraction.toFixed(2) + ' %'} />
                     </div>
                   )}
                 </div>
@@ -142,7 +142,7 @@ const VideosDetails = () => {
           <div className='flex flex-col w-6/12 mx-auto mt-8'>
             <Accordion>
               <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls='panel1a-content' id='panel1a-header'>
-                <Typography>Distribucion del volumen Ventricular</Typography>
+                <Typography>Distribución del volumen ventricular</Typography>
               </AccordionSummary>
               <AccordionDetails>
                 <div className='flex flex-col mx-auto'>
@@ -196,7 +196,7 @@ const VideosDetails = () => {
           <div className='flex flex-col w-6/12 mx-auto mb-1'>
             <Accordion>
               <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls='panel1a-content' id='panel1a-header'>
-                <Typography>Distribucion del area Ventricular</Typography>
+                <Typography>Distribución del área ventricular</Typography>
               </AccordionSummary>
               <AccordionDetails>
                 <div className='flex flex-col mx-auto'>
@@ -208,7 +208,7 @@ const VideosDetails = () => {
                       labels: ventricleArea.map((_, index) => String(index)),
                       datasets: [
                         {
-                          label: 'Area Ventricular',
+                          label: 'Área Ventricular',
                           data: ventricleArea,
                           borderColor: 'rgb(255, 99, 132)',
                           backgroundColor: 'rgba(255, 99, 132, 0.5)',

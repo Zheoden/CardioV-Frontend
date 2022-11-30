@@ -33,7 +33,7 @@ export const CustomRoutes: CustomRoute[] = [
     shouldDisplay: true,
     displayName: 'Ecocardiogramas',
     description:
-      'Esta vista te permite subir nuevos videos o imagenes para ser procesados. Tambien te permite ver informacion de videos e imagenes subidos previamente.',
+      'Esta vista te permite subir nuevos videos o imagenes para ser procesados. Tambien te permite ver información de videos e imagenes subidos previamente.',
     key: 'echocardiogram',
   },
   {

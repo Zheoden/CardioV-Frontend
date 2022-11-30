@@ -119,7 +119,7 @@ const VideoUploadModal = (props: VideoUploadModalProps) => {
                   </div>
                 </div>
                 <TextField
-                  label='Descripcion'
+                  label='Descripción'
                   variant='outlined'
                   value={videoUpload.description}
                   margin='normal'

@@ -20,9 +20,9 @@ export const getFriendlyMetricName = (name: string): string => {
     case 'child_avg_volume':
       return 'Promedio en Niños (0 a 13 años)';
     case 'teen_avg_volume':
-      return 'Promedio en Adolecentes (14 a 20 años)';
+      return 'Promedio en Adolescentes (14 a 20 años)';
     case 'young_adult_avg_volume':
-      return 'Promedio en Jovenes Adultos (21 a 40 años)';
+      return 'Promedio en Jóvenes Adultos (21 a 40 años)';
     case 'adult_avg_volume':
       return 'Promedio en Adultos (41 a 60 años)';
     case 'old_avg_volume':
@@ -34,9 +34,9 @@ export const getFriendlyMetricName = (name: string): string => {
     case 'child_avg_walls':
       return 'Promedio en Niños (0 a 13 años)';
     case 'teen_avg_walls':
-      return 'Promedio en Adolecentes (14 a 20 años)';
+      return 'Promedio en Adolescentes (14 a 20 años)';
     case 'young_adult_avg_walls':
-      return 'Promedio en Jovenes Adultos (21 a 40 años)';
+      return 'Promedio en Jóvenes Adultos (21 a 40 años)';
     case 'adult_avg_walls':
       return 'Promedio en Adultos (41 a 60 años)';
     case 'old_avg_walls':
@@ -48,9 +48,9 @@ export const getFriendlyMetricName = (name: string): string => {
     case 'child_ventricle_area':
       return 'Promedio en Niños (0 a 13 años)';
     case 'teen_ventricle_area':
-      return 'Promedio en Adolecentes (14 a 20 años)';
+      return 'Promedio en Adolescentes (14 a 20 años)';
     case 'young_adult_ventricle_area':
-      return 'Promedio en Jovenes Adultos (21 a 40 años)';
+      return 'Promedio en Jóvenes Adultos (21 a 40 años)';
     case 'adult_ventricle_area':
       return 'Promedio en Adultos (41 a 60 años)';
     case 'old_ventricle_area':

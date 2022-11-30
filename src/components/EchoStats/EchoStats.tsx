@@ -45,7 +45,7 @@ const EchoStats = () => {
             className={`inline-block p-4 rounded-t-lg cursor-pointer ${
               currentTab === 'area' ? 'text-blue-600 bg-gray-100 active' : 'hover:text-gray-600 hover:bg-gray-50'
             }`}>
-            Area Ventricular
+            Área Ventricular
           </span>
         </li>
       </ul>
@@ -63,7 +63,10 @@ const EchoStats = () => {
                       {currentTab === 'volume' && <ViewInArIcon color='inherit' />}
                     </Avatar>
                   </div>
-                  <ListItemText primary={getFriendlyMetricName(key[0])} secondary={key[1]} />
+                  <ListItemText
+                    primary={getFriendlyMetricName(key[0])}
+                    secondary={`${key[1]} ${key[0].match('volume') ? 'cm3' : key[0].match('are') ? 'cm2' : 'cm'}`}
+                  />
                 </div>
               ),
           )}

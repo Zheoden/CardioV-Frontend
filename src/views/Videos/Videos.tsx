@@ -79,7 +79,7 @@ const Videos = () => {
                   className={`inline-block p-4 rounded-t-lg cursor-pointer ${
                     currentTab === 'stats' ? 'text-blue-600 bg-gray-100 active' : 'hover:text-gray-600 hover:bg-gray-50'
                   }`}>
-                  Estadisticas
+                  Estadísticas
                 </span>
               </li>
             </ul>
